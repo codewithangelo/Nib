@@ -23,6 +23,8 @@
 		87E1B9782B26844B00C2B0EC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 87E1B9772B26844B00C2B0EC /* GoogleSignIn */; };
 		87E1B97A2B26844B00C2B0EC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 87E1B9792B26844B00C2B0EC /* GoogleSignInSwift */; };
 		87E1B97E2B26853C00C2B0EC /* AuthDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B97D2B26853C00C2B0EC /* AuthDataResult.swift */; };
+		87E1B9802B2685DD00C2B0EC /* GoogleSignInResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B97F2B2685DD00C2B0EC /* GoogleSignInResult.swift */; };
+		87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B9812B26862600C2B0EC /* AppleSignInResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		87A3C1F32B268222002E274D /* NibUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		87E1B9692B26832A00C2B0EC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87E1B97D2B26853C00C2B0EC /* AuthDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResult.swift; sourceTree = "<group>"; };
+		87E1B97F2B2685DD00C2B0EC /* GoogleSignInResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInResult.swift; sourceTree = "<group>"; };
+		87E1B9812B26862600C2B0EC /* AppleSignInResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +162,9 @@
 		87E1B97B2B2684F300C2B0EC /* IdentityProviderModels */ = {
 			isa = PBXGroup;
 			children = (
+				87E1B9812B26862600C2B0EC /* AppleSignInResult.swift */,
 				87E1B97D2B26853C00C2B0EC /* AuthDataResult.swift */,
+				87E1B97F2B2685DD00C2B0EC /* GoogleSignInResult.swift */,
 			);
 			path = IdentityProviderModels;
 			sourceTree = "<group>";
@@ -315,8 +321,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				87E1B96A2B26832A00C2B0EC /* User.swift in Sources */,
+				87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */,
 				87A3C1D92B268222002E274D /* ContentView.swift in Sources */,
 				87E1B97E2B26853C00C2B0EC /* AuthDataResult.swift in Sources */,
+				87E1B9802B2685DD00C2B0EC /* GoogleSignInResult.swift in Sources */,
 				87A3C1D72B268222002E274D /* NibApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
