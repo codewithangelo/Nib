@@ -1,5 +1,5 @@
 //
-//  NibUser.swift
+//  User.swift
 //  Nib
 //
 //  Created by Angelo Austria on 2023-12-10.
@@ -9,11 +9,18 @@ import Foundation
 
 import Foundation
 
-struct NibUser: Codable, Equatable {
+struct User: Codable, Equatable {
     let userId: String
     let email: String?
     let createdAt: Date?
     let displayName: String?
+    
+    init(authDataResult: AuthDataResult) {
+        self.userId = authDataResult.uid
+        self.email = authDataResult.email
+        self.createdAt = Date()
+        self.displayName = ""
+    }
     
     init(
         userId: String,
@@ -50,7 +57,7 @@ struct NibUser: Codable, Equatable {
         try container.encodeIfPresent(self.displayName, forKey: .displayName)
     }
     
-    static func ==(lhs: NibUser, rhs: NibUser) -> Bool {
+    static func ==(lhs: User, rhs: User) -> Bool {
         return lhs.userId == rhs.userId
     }
 }
