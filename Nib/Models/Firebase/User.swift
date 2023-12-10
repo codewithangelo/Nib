@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct User: Codable, Equatable {
     let userId: String
     let email: String?
