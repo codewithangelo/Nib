@@ -10,12 +10,18 @@ import Foundation
 @MainActor
 final class SettingsViewModel: ObservableObject {
     private let authenticationService: NibAuthenticationServiceProtocol
+    private let userService: UserServiceProtocol
     
-    init(authenticationService: NibAuthenticationServiceProtocol) {
+    init(
+        authenticationService: NibAuthenticationServiceProtocol,
+        userService: UserServiceProtocol
+    ) {
         self.authenticationService = authenticationService
+        self.userService = userService
     }
     
-    func deleteAccount() async throws {
+    func deleteAccount(user: User) async throws {
+        try await userService.deleteUser(user: user)
         try await authenticationService.delete()
     }
     

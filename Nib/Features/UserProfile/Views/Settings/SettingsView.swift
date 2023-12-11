@@ -12,14 +12,28 @@ struct SettingsView: View {
     var app: AppRootViewModel
     
     private static let authenticationService: NibAuthenticationServiceProtocol = NibAuthenticationService()
+    private static let userService: UserServiceProtocol = UserService()
     
     @StateObject
-    private var viewModel: SettingsViewModel = SettingsViewModel(authenticationService: authenticationService)
+    private var viewModel: SettingsViewModel = SettingsViewModel(
+        authenticationService: authenticationService,
+        userService: userService
+    )
+    
+    @State
+    private var showUsernameView: Bool = false
     
     var body: some View {
         List {
             Section("Account") {
-                deleteAccoutButton
+                usernameButton
+                    .navigationDestination(isPresented: $showUsernameView) {
+                        UsernameView(
+                            currentUser: app.currentUser!,
+                            onDone: onUsernameDone
+                        )
+                    }
+                deleteAccountButton
             }
             
             Section("App") {
@@ -31,7 +45,16 @@ struct SettingsView: View {
 }
 
 extension SettingsView {
-    private var deleteAccoutButton: some View {
+    private var usernameButton: some View {
+        Button(
+            action: { showUsernameView = true },
+            label: {
+                Text("Username")
+            }
+        )
+    }
+    
+    private var deleteAccountButton: some View {
         Button(
             role: .destructive,
             action: deleteAccount,
@@ -52,10 +75,26 @@ extension SettingsView {
 }
 
 extension SettingsView {
-    private func deleteAccount() {
+    private func onUsernameDone() {
         Task {
             do {
-                try await viewModel.deleteAccount()
+                try await app.loadCurrentUserData()
+                showUsernameView = false
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func deleteAccount() {
+        guard let user = app.currentUser else {
+            // TODO: Handle error
+            return
+        }
+        
+        Task {
+            do {
+                try await viewModel.deleteAccount(user: user)
                 app.showSignInView = true
             } catch {
                 print(error)
@@ -76,5 +115,7 @@ extension SettingsView {
 }
 
 #Preview {
-    SettingsView()
+    NavigationStack {
+        SettingsView()
+    }
 }

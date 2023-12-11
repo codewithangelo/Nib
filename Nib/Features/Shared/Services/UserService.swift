@@ -56,3 +56,29 @@ extension UserService {
         try await batch.commit()
     }
 }
+
+extension UserService {
+    func updateUsername(oldUsername: Username, newUsername: Username) async throws {
+        let batch = Firestore.firestore().batch()
+        
+        let userDocRef = getUserDocument(userId: newUsername.userId)
+        
+        // Delete old username document, if it exists
+        if !oldUsername.username.isEmpty {
+            let oldUsernameDocRef = getUsernameDocument(username: oldUsername.username)
+            batch.deleteDocument(oldUsernameDocRef)
+        }
+        
+        // Update user display name field
+        batch.updateData([
+            User.CodingKeys.displayName.rawValue: newUsername.username
+        ], forDocument: userDocRef)
+        
+        // Add new username document with updated username
+        let newUsernameDocRef = getUsernameDocument(username: newUsername.username)
+        try batch.setData(from: newUsername, forDocument: newUsernameDocRef, merge: false)
+        
+        
+        try await batch.commit()
+    }
+}

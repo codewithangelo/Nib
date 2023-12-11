@@ -13,4 +13,6 @@ protocol UserServiceProtocol {
     func getUser(userId: String) async throws -> User?
     
     func deleteUser(user: User) async throws
+    
+    func updateUsername(oldUsername: Username, newUsername: Username) async throws
 }
