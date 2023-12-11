@@ -11,12 +11,13 @@ struct AppRootView: View {
     private static let authenticationService: NibAuthenticationServiceProtocol = NibAuthenticationService()
     
     @StateObject
-    private var viewModel: AppRootViewModel = AppRootViewModel(authenticationService: authenticationService)
+    var viewModel: AppRootViewModel = AppRootViewModel(authenticationService: authenticationService)
     
     var body: some View {
         ZStack {
             if (!viewModel.showSignInView) {
-                Text("App")
+                YourProfileView()
+                    .environmentObject(viewModel)
             }
         }
         .onAppear {
