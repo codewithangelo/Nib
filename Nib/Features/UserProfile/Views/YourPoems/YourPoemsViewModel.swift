@@ -31,18 +31,12 @@ final class YourPoemsViewModel: ObservableObject {
             return
         }
         
-//        print("BEFORE FETCHING POEMS BY AUTHOR")
-//        print(hasMore)
-//        print(poems)
-        
         let (poems, lastDocument) = try await poemService.getPoemsByAuthorId(
             authorId: userId,
             count: limit,
             lastDocument: lastDocument
         )
-//        print(hasMore)
-//        print(poems)
-//        print("AFTER FETCHING POEMS BY AUTHOR")
+
         self.poems.append(contentsOf: poems)
         self.lastDocument = lastDocument
         self.hasMore = poems.count >= limit
@@ -54,7 +48,7 @@ final class YourPoemsViewModel: ObservableObject {
         self.hasMore = true
     }
     
-    func deletePoem() async throws {
+    func deleteSelectedPoem() async throws {
         guard let poem = selectedPoem, let poemId = poem.id else {
             // TODO: Throw error
             return

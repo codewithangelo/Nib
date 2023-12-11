@@ -73,7 +73,7 @@ extension YourPoemsView {
     private func deleteSelectedPoem() {
         Task {
             do {
-                try await viewModel.deletePoem()
+                try await viewModel.deleteSelectedPoem()
             } catch {
                 print(error)
             }
