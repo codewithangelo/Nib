@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol NibAuthenticationService {
+protocol NibAuthenticationServiceProtocol {
+    func getAuthenticatedUser() throws -> AuthDataResult
+    
     func getProviders() throws -> [AuthProviderOption]
     
     func signOut() throws
     
     func delete() async throws
-    
-    func getAuthenticatedUser() throws -> AuthDataResult
     
     @discardableResult
     func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResult
