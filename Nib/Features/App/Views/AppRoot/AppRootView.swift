@@ -21,6 +21,10 @@ struct AppRootView: View {
         ZStack {
             if (!viewModel.showSignInView) {
                 TabView {
+                    DraftView()
+                        .tabItem { Image(systemName: "plus.app") }
+                        .environmentObject(viewModel)
+                    
                     YourProfileView()
                         .tabItem { Image(systemName: "person.crop.circle") }
                         .environmentObject(viewModel)
