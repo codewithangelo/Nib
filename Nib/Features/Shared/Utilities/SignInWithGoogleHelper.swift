@@ -24,10 +24,8 @@ final class SignInWithGoogleHelper {
         }
         
         let accessToken = gidSignInResult.user.accessToken.tokenString
-        let name = gidSignInResult.user.profile?.name
-        let email = gidSignInResult.user.profile?.email
         
-        return GoogleSignInResult(idToken: idToken, accessToken: accessToken, name: name, email: email)
+        return GoogleSignInResult(idToken: idToken, accessToken: accessToken)
     }
     
     @MainActor

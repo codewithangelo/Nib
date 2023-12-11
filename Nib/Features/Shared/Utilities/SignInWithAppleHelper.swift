@@ -201,10 +201,8 @@ extension SignInWithAppleHelper: ASAuthorizationControllerDelegate {
         do {
             let token = try getTokenFromAuthorization(authorization: authorization)
             let nonce = try getCurrentNonce()
-            let name = try getGivenNameFromAuthorization(authorization: authorization)
-            let email = try getEmailFromAuthorization(authorization: authorization)
             
-            let result = SignInWithAppleResult(token: token, nonce: nonce, name: name, email: email)
+            let result = SignInWithAppleResult(token: token, nonce: nonce)
             completionHandler?(.success(result))
         } catch {
             completionHandler?(.failure(error))
