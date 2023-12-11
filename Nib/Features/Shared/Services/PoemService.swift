@@ -21,9 +21,14 @@ final class PoemService: PoemServiceProtocol {
     }
     
     private let poemsCollection = Firestore.firestore().collection("poems")
+    private let usernamesCollection = Firestore.firestore().collection("usernames")
     
     private func getPoemDocument(poemId: String) -> DocumentReference {
         poemsCollection.document(poemId)
+    }
+    
+    private func getUsernameDocument(username: String) -> DocumentReference {
+        usernamesCollection.document(username)
     }
     
     func createPoem(poem: Poem) throws {
@@ -71,9 +76,17 @@ final class PoemService: PoemServiceProtocol {
         poemsCollection
             .whereField(Poem.CodingKeys.authorId.rawValue, isEqualTo: authorId)
     }
+    
+    func getPoemAuthorName(authorId: String) async throws -> Username? {
+        try await usernamesCollection.whereField(Username.CodingKeys.userId.rawValue, isEqualTo: authorId).getDocuments(as: Username.self).first
+    }
 }
 
 extension Query {
+    func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
+        try await getDocumentsWithSnapshot(as: type).poems
+    }
+    
     func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (poems: [T], lastDocument: DocumentSnapshot?) where T : Decodable {
         let snapshot = try await self.getDocuments()
         

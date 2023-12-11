@@ -19,32 +19,56 @@ struct YourPoemsView: View {
     @StateObject
     private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
     
+    @State
+    private var selectedPoem: Poem? = nil
+    
     var body: some View {
         ScrollView {
             Masonry(
                 gridItems: viewModel.poems,
                 numOfColumns: 2,
-                itemContent: renderPoemCard,
+                itemContent: { poem in
+                    Card(title: poem.title, content: poem.content)
+                        .frame(
+                            minHeight: minCardHeight,
+                            idealHeight: getPoemCardHeight(poem: poem),
+                            maxHeight: maxCardHeight
+                        )
+                        .onTapGesture { selectedPoem = poem }
+                },
                 loadMore: loadPoems,
                 getHeight: getPoemCardHeight
             )
         }
         .onAppear(perform: loadPoems)
-        .refreshable {
-            refreshPoems()
+        .refreshable { refreshPoems() }
+        .sheet(item: $selectedPoem) { poem in
+            VStack {
+                poemSheetHeader
+                PoemView(poem: poem)
+            }
         }
+    }
+}
+
+extension YourPoemsView {
+    private var poemSheetHeader: some View {
+        HStack {
+            Spacer()
+            Button(
+                action: { selectedPoem = nil },
+                label: {
+                    Image(systemName: "xmark")
+                }
+            )
+        }
+        .padding()
     }
 }
 
 extension YourPoemsView {
     private func getPoemCardHeight(poem: Poem) -> CGFloat {
         min(minCardHeight + CGFloat(poem.content.count), maxCardHeight)
-    }
-    
-    @ViewBuilder
-    private func renderPoemCard(poem: Poem) -> some View {
-        Card(title: poem.title, content: poem.content)
-            .frame(minHeight: minCardHeight, idealHeight: getPoemCardHeight(poem: poem), maxHeight: maxCardHeight)
     }
 }
 

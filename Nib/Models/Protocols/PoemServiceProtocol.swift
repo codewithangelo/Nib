@@ -18,4 +18,6 @@ protocol PoemServiceProtocol {
     func deletePoem(poemId: String) async throws
     
     func getPoemsByAuthorId(authorId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?)
+    
+    func getPoemAuthorName(authorId: String) async throws -> Username?
 }

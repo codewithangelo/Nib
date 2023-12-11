@@ -56,6 +56,8 @@
 		87E1B9CB2B26B2D100C2B0EC /* PoemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B9CA2B26B2D100C2B0EC /* PoemService.swift */; };
 		87E1B9D02B26B54400C2B0EC /* DraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B9CF2B26B54400C2B0EC /* DraftView.swift */; };
 		87E1B9D22B26B54F00C2B0EC /* DraftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1B9D12B26B54F00C2B0EC /* DraftViewModel.swift */; };
+		87FE6D702B26C89C00E8A785 /* PoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE6D6F2B26C89C00E8A785 /* PoemView.swift */; };
+		87FE6D722B26CAEA00E8A785 /* PoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE6D712B26CAEA00E8A785 /* PoemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		87E1B9CA2B26B2D100C2B0EC /* PoemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemService.swift; sourceTree = "<group>"; };
 		87E1B9CF2B26B54400C2B0EC /* DraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftView.swift; sourceTree = "<group>"; };
 		87E1B9D12B26B54F00C2B0EC /* DraftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftViewModel.swift; sourceTree = "<group>"; };
+		87FE6D6F2B26C89C00E8A785 /* PoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemView.swift; sourceTree = "<group>"; };
+		87FE6D712B26CAEA00E8A785 /* PoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,9 +265,10 @@
 		87E1B9892B26885E00C2B0EC /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				87E1B9CC2B26B50900C2B0EC /* Publisher */,
+				87FE6D6D2B26C87400E8A785 /* Poem */,
 				87E1B98B2B26887200C2B0EC /* App */,
 				87E1B98A2B26886800C2B0EC /* Authentication */,
+				87E1B9CC2B26B50900C2B0EC /* Publisher */,
 				87E1B98F2B2688A200C2B0EC /* Shared */,
 				87E1B9B02B26953700C2B0EC /* UserProfile */,
 			);
@@ -450,6 +455,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		87FE6D6D2B26C87400E8A785 /* Poem */ = {
+			isa = PBXGroup;
+			children = (
+				87FE6D6E2B26C88E00E8A785 /* Views */,
+			);
+			path = Poem;
+			sourceTree = "<group>";
+		};
+		87FE6D6E2B26C88E00E8A785 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87FE6D6F2B26C89C00E8A785 /* PoemView.swift */,
+				87FE6D712B26CAEA00E8A785 /* PoemViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -607,6 +629,7 @@
 				87C28BEF2B26BD51009B2BC8 /* YourPoemsViewModel.swift in Sources */,
 				87C28BE92B26BAB2009B2BC8 /* YourPoemsView.swift in Sources */,
 				87E1B9BB2B269BC200C2B0EC /* UserService.swift in Sources */,
+				87FE6D722B26CAEA00E8A785 /* PoemViewModel.swift in Sources */,
 				87E1B9C32B26A5D000C2B0EC /* UsernameViewModel.swift in Sources */,
 				87E1B9AD2B268CFD00C2B0EC /* NibAuthenticationService.swift in Sources */,
 				87E1B9D22B26B54F00C2B0EC /* DraftViewModel.swift in Sources */,
@@ -619,6 +642,7 @@
 				87E1B9D02B26B54400C2B0EC /* DraftView.swift in Sources */,
 				87E1B9BD2B269BD200C2B0EC /* UserServiceProtocol.swift in Sources */,
 				87E1B9AF2B2694B900C2B0EC /* Username.swift in Sources */,
+				87FE6D702B26C89C00E8A785 /* PoemView.swift in Sources */,
 				87E1B99B2B2689FE00C2B0EC /* DividerWithLabel.swift in Sources */,
 				87E1B9962B2689B600C2B0EC /* SignInWithGoogleButton.swift in Sources */,
 				87E1B9A12B268AF100C2B0EC /* AppRootView.swift in Sources */,

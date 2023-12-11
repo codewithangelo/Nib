@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Username: Codable {
+struct Username: Codable, Equatable {
     let userId: String
     let username: String
     
@@ -34,5 +34,9 @@ struct Username: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.userId, forKey: .userId)
         try container.encode(self.username, forKey: .username)
+    }
+    
+    static func ==(lhs: Username, rhs: Username) -> Bool {
+        return lhs.userId == rhs.userId && lhs.username == rhs.username
     }
 }
