@@ -57,4 +57,35 @@ final class PoemService: PoemServiceProtocol {
         let poem = getPoemDocument(poemId: poemId)
         try await poem.delete()
     }
+    
+    func getPoemsByAuthorId(authorId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
+        let query = getPoemsByAuthorQuery(authorId: authorId)
+        
+        return try await query
+            .limit(to: count)
+            .startOptionally(afterDocument: lastDocument)
+            .getDocumentsWithSnapshot(as: Poem.self)
+    }
+    
+    private func getPoemsByAuthorQuery(authorId: String) -> Query {
+        poemsCollection
+            .whereField(Poem.CodingKeys.authorId.rawValue, isEqualTo: authorId)
+    }
+}
+
+extension Query {
+    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (poems: [T], lastDocument: DocumentSnapshot?) where T : Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        let poems = try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+        
+        return (poems, snapshot.documents.last)
+    }
+    
+    func startOptionally(afterDocument lastDocument: DocumentSnapshot?) -> Query {
+        guard let lastDocument else { return self }
+        return self.start(afterDocument: lastDocument)
+    }
 }
