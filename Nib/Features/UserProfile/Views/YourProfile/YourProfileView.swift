@@ -14,7 +14,7 @@ struct YourProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Your Profile")
+                YourPoemsView()
             }
             .toolbar(content: yourProfileToolbar)
             .navigationDestination(isPresented: $showSettingsView) {
