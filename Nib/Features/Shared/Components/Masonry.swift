@@ -13,6 +13,7 @@ struct Masonry<T1: Identifiable & Equatable, T2: View>: View {
         var gridItems = [T1]()
     }
     
+    @Binding
     var gridItems: [T1]
     var numberOfColumns: Int
     var itemContent: (T1) -> T2
@@ -24,7 +25,7 @@ struct Masonry<T1: Identifiable & Equatable, T2: View>: View {
     let columns: [Column]
     
     init(
-        gridItems: [T1],
+        gridItems: Binding<[T1]>,
         numOfColumns: Int,
         @ViewBuilder itemContent: @escaping (T1) -> T2,
         loadMore: @escaping () -> Void,
@@ -32,7 +33,7 @@ struct Masonry<T1: Identifiable & Equatable, T2: View>: View {
         spacing: CGFloat = 10,
         horizontalPadding: CGFloat = 10
     ) {
-        self.gridItems = gridItems
+        self._gridItems = gridItems
         self.numberOfColumns = 2
         self.itemContent = itemContent
         self.loadMore = loadMore
@@ -59,8 +60,8 @@ struct Masonry<T1: Identifiable & Equatable, T2: View>: View {
                     smallestColumnIndex = i
                 }
             }
-            columns[smallestColumnIndex].gridItems.append(gridItem)
-            columnsHeight[smallestColumnIndex] += getHeight(gridItem)
+            columns[smallestColumnIndex].gridItems.append(gridItem.wrappedValue)
+            columnsHeight[smallestColumnIndex] += getHeight(gridItem.wrappedValue)
         }
         
         self.columns = columns
@@ -88,11 +89,11 @@ struct Masonry<T1: Identifiable & Equatable, T2: View>: View {
 #Preview {
     ScrollView {
         Masonry(
-            gridItems: [
+            gridItems: .constant([
                 Poem(authorId: "1", content: "Lorem ipsum", id: "1", title: "1"),
                 Poem(authorId: "2", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", id: "2", title: "2"),
                 Poem(authorId: "3", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", id: "3", title: "3")
-            ],
+            ]),
             numOfColumns: 2,
             itemContent: { poem in
                 Card(title: poem.title, content: poem.content)
