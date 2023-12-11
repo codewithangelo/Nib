@@ -19,13 +19,10 @@ struct YourPoemsView: View {
     @StateObject
     private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
     
-    @State
-    private var selectedPoem: Poem? = nil
-    
     var body: some View {
         ScrollView {
             Masonry(
-                gridItems: viewModel.poems,
+                gridItems: $viewModel.poems,
                 numOfColumns: 2,
                 itemContent: { poem in
                     Card(title: poem.title, content: poem.content)
@@ -34,7 +31,7 @@ struct YourPoemsView: View {
                             idealHeight: getPoemCardHeight(poem: poem),
                             maxHeight: maxCardHeight
                         )
-                        .onTapGesture { selectedPoem = poem }
+                        .onTapGesture { viewModel.selectedPoem = poem }
                 },
                 loadMore: loadPoems,
                 getHeight: getPoemCardHeight
@@ -42,27 +39,27 @@ struct YourPoemsView: View {
         }
         .onAppear(perform: loadPoems)
         .refreshable { refreshPoems() }
-        .sheet(item: $selectedPoem) { poem in
-            VStack {
-                poemSheetHeader
-                PoemView(poem: poem)
-            }
+        .navigationDestination(item: $viewModel.selectedPoem) { poem in
+            PoemView(poem: poem)
+                .toolbar(content: poemToolbar)
         }
     }
 }
 
 extension YourPoemsView {
-    private var poemSheetHeader: some View {
-        HStack {
-            Spacer()
-            Button(
-                action: { selectedPoem = nil },
-                label: {
-                    Image(systemName: "xmark")
-                }
-            )
+    @ToolbarContentBuilder
+    private func poemToolbar() -> some ToolbarContent {
+        ToolbarItem {
+            Menu {
+                Button(
+                    role: .destructive,
+                    action: deleteSelectedPoem,
+                    label: { Text("Delete") }
+                )
+            } label: {
+                Image(systemName: "ellipsis")
+            }
         }
-        .padding()
     }
 }
 
@@ -73,6 +70,17 @@ extension YourPoemsView {
 }
 
 extension YourPoemsView {
+    private func deleteSelectedPoem() {
+        Task {
+            do {
+                try await viewModel.deletePoem()
+            } catch {
+                print(error)
+            }
+        }
+        refreshPoems()
+    }
+    
     private func loadPoems() {
         guard let currentUser = app.currentUser else {
             // TODO: Throw error
