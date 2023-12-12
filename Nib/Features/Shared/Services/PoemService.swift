@@ -63,6 +63,13 @@ final class PoemService: PoemServiceProtocol {
         try await poem.delete()
     }
     
+    func getPoems(count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
+        return try await poemsCollection
+            .limit(to: count)
+            .startOptionally(afterDocument: lastDocument)
+            .getDocumentsWithSnapshot(as: Poem.self)
+    }
+    
     func getPoemsByAuthorId(authorId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
         let query = getPoemsByAuthorQuery(authorId: authorId)
         

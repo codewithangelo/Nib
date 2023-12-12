@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class PoemViewModel: ObservableObject {
+final class UserPoemViewModel: ObservableObject {
     public enum State: Equatable {
         case loading
         case error

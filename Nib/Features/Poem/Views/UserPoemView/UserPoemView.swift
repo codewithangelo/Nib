@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PoemView: View {
+struct UserPoemView: View {
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
-    private var viewModel: PoemViewModel = PoemViewModel(poemService: poemService)
+    private var viewModel: UserPoemViewModel = UserPoemViewModel(poemService: poemService)
     
     let poem: Poem
     
@@ -19,7 +19,11 @@ struct PoemView: View {
         ScrollView {
             switch viewModel.state {
             case .loading:
-                ProgressView()
+                VStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             case .error:
                 EmptyView()
             case .success(let author):
@@ -45,7 +49,7 @@ struct PoemView: View {
     }
 }
 
-extension PoemView {
+extension UserPoemView {
     func loadAuthor() {
         Task {
             await viewModel.loadAuthorName(poem: poem)
@@ -54,7 +58,7 @@ extension PoemView {
 }
 
 #Preview {
-    PoemView(
+    UserPoemView(
         poem: Poem(
             authorId: "123",
             content: "Content",

@@ -40,7 +40,7 @@ struct YourPoemsView: View {
         .onAppear(perform: loadPoems)
         .refreshable { refreshPoems() }
         .navigationDestination(item: $viewModel.selectedPoem) { poem in
-            PoemView(poem: poem)
+            YourPoemView(poem: poem)
                 .toolbar(content: poemToolbar)
         }
     }

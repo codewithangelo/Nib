@@ -21,6 +21,9 @@ struct AppRootView: View {
         ZStack {
             if (!viewModel.showSignInView) {
                 TabView {
+                    PoemFeedView()
+                        .tabItem { Image(systemName: "house") }
+                    
                     DraftView()
                         .tabItem { Image(systemName: "plus.app") }
                         .environmentObject(viewModel)
