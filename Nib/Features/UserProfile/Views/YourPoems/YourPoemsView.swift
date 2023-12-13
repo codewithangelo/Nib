@@ -74,11 +74,11 @@ extension YourPoemsView {
         Task {
             do {
                 try await viewModel.deleteSelectedPoem()
+                viewModel.reset()
             } catch {
                 print(error)
             }
         }
-        refreshPoems()
     }
     
     private func loadPoems() {

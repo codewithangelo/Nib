@@ -36,7 +36,7 @@ final class YourPoemsViewModel: ObservableObject {
             count: limit,
             lastDocument: lastDocument
         )
-
+        print("FETCHING POEMS BY USER")
         self.poems.append(contentsOf: poems)
         self.lastDocument = lastDocument
         self.hasMore = poems.count >= limit

@@ -25,4 +25,9 @@ final class DraftViewModel: ObservableObject {
         let newPoem = Poem(authorId: user.userId, content: content, title: title)
         try await poemService.createPoem(poem: newPoem)
     }
+    
+    func reset() {
+        self.title = ""
+        self.content = ""
+    }
 }

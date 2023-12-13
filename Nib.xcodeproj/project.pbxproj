@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490B82B292FEA0048CD5D /* RadioButton.swift */; };
+		873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490BB2B293B3C0048CD5D /* PreviewView.swift */; };
 		87A3C1D72B268222002E274D /* NibApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D62B268222002E274D /* NibApp.swift */; };
 		87A3C1D92B268222002E274D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D82B268222002E274D /* ContentView.swift */; };
 		87A3C1DB2B268222002E274D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A3C1DA2B268222002E274D /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 
 /* Begin PBXFileReference section */
 		873490B82B292FEA0048CD5D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		873490BB2B293B3C0048CD5D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		87A3C1D32B268222002E274D /* Nib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A3C1D62B268222002E274D /* NibApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibApp.swift; sourceTree = "<group>"; };
 		87A3C1D82B268222002E274D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		873490BA2B293B2D0048CD5D /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				873490BB2B293B3C0048CD5D /* PreviewView.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
 		87A3C1CA2B268222002E274D = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +535,7 @@
 		87E1B9CE2B26B52300C2B0EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				873490BA2B293B2D0048CD5D /* Preview */,
 				87E1B9CD2B26B51000C2B0EC /* Draft */,
 			);
 			path = Views;
@@ -732,6 +743,7 @@
 				87E1B9C12B26A5B600C2B0EC /* UsernameView.swift in Sources */,
 				87E1B9C52B26AD1900C2B0EC /* TextInput.swift in Sources */,
 				87CAD92A2B282044000AE56D /* ReportingService.swift in Sources */,
+				873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */,
 				87E1B9B92B26967500C2B0EC /* SettingsViewModel.swift in Sources */,
 				87C28BEB2B26BABE009B2BC8 /* Masonry.swift in Sources */,
 				87CAD9202B2810F1000AE56D /* PoemFeedViewModel.swift in Sources */,

@@ -10,7 +10,7 @@ import SwiftUI
 struct YourPoemView: View {
     @EnvironmentObject
     var app: AppRootViewModel
-    
+
     let poem: Poem
     
     var body: some View {

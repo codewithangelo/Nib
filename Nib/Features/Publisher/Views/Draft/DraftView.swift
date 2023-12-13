@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DraftView: View {
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
+    
     @EnvironmentObject
     var app: AppRootViewModel
     
@@ -37,17 +40,16 @@ struct DraftView: View {
 extension DraftView {
     @ToolbarContentBuilder
     func draftToolbar() -> some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(
-                action: { },
-                label: {  Image(systemName: "eye.fill") }
-            )
-        }
-        
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(
-                action: publishPoem,
-                label: {  Image(systemName: "paperplane.fill") }
+        ToolbarItem {
+            NavigationLink(
+                destination: {
+                    PreviewView(
+                        title: $viewModel.title,
+                        content: $viewModel.content,
+                        publish: publishPoem
+                    )
+                },
+                label: { Text("Next") }
             )
         }
     }
@@ -63,6 +65,7 @@ extension DraftView {
         Task {
             do {
                 try await viewModel.publishPoem(user: author)
+                viewModel.reset()
             } catch {
                 print(error)
             }
@@ -72,4 +75,10 @@ extension DraftView {
 
 #Preview {
     DraftView()
+        .environmentObject(
+            AppRootViewModel(
+                authenticationService: NibAuthenticationService(),
+                userService: UserService()
+            )
+        )
 }
