@@ -16,6 +16,9 @@ struct PoemFeedView: View {
     @StateObject
     private var viewModel: PoemFeedViewModel = PoemFeedViewModel(poemService: poemService)
     
+    @State
+    private var showReportPoemView: Bool = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -29,7 +32,9 @@ struct PoemFeedView: View {
                                 idealHeight: getPoemCardHeight(poem: poem),
                                 maxHeight: maxCardHeight
                             )
-                            .onTapGesture { viewModel.selectedPoem = poem }
+                            .onTapGesture {
+                                viewModel.selectedPoem = poem
+                            }
                     },
                     loadMore: loadPoems,
                     getHeight: getPoemCardHeight
@@ -40,6 +45,13 @@ struct PoemFeedView: View {
             .navigationDestination(item: $viewModel.selectedPoem) { poem in
                 UserPoemView(poem: poem)
                     .toolbar(content: poemToolbar)
+                    .sheet(isPresented: $showReportPoemView) {
+                        ReportPoemView(
+                            poem: poem,
+                            onReportCompleted: { showReportPoemView = false }
+                        )
+                            .presentationDetents([.medium, .large])
+                    }
             }
         }
     }
@@ -50,11 +62,7 @@ extension PoemFeedView {
     private func poemToolbar() -> some ToolbarContent {
         ToolbarItem {
             Menu {
-                Button(
-                    role: .destructive,
-                    action: { },
-                    label: { Text("Report") }
-                )
+                Button(role: .destructive, action: { showReportPoemView = true }, label: { Text("Report") })
             } label: {
                 Image(systemName: "ellipsis")
             }
