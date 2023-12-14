@@ -23,6 +23,7 @@ struct AppRootView: View {
                 TabView {
                     PoemFeedView()
                         .tabItem { Image(systemName: "house") }
+                        .environmentObject(viewModel)
                     
                     DraftView()
                         .tabItem { Image(systemName: "plus.app") }

@@ -21,10 +21,23 @@ final class PoemService: PoemServiceProtocol {
     }
     
     private let poemsCollection = Firestore.firestore().collection("poems")
+    private let usersCollection = Firestore.firestore().collection("users")
     private let usernamesCollection = Firestore.firestore().collection("usernames")
+    
+    private func getUserFavoritePoemsCollection(userId: String) -> CollectionReference {
+        getUserDocument(userId: userId).collection("favorites")
+    }
     
     private func getPoemDocument(poemId: String) -> DocumentReference {
         poemsCollection.document(poemId)
+    }
+    
+    private func getUserDocument(userId: String) -> DocumentReference {
+        usersCollection.document(userId)
+    }
+    
+    private func getUserFavoritePoemDocument(userId: String, poemId: String) -> DocumentReference {
+        getUserFavoritePoemsCollection(userId: userId).document(poemId)
     }
     
     private func getUsernameDocument(username: String) -> DocumentReference {
@@ -86,6 +99,29 @@ final class PoemService: PoemServiceProtocol {
     
     func getPoemAuthorName(authorId: String) async throws -> Username? {
         try await usernamesCollection.whereField(Username.CodingKeys.userId.rawValue, isEqualTo: authorId).getDocuments(as: Username.self).first
+    }
+}
+
+// MARK: User Favorite Poems
+extension PoemService {
+    func getPoemFromUserFavorites(userId: String, poemId: String) async throws -> Poem? {
+        let poem = getUserFavoritePoemDocument(userId: userId, poemId: poemId)
+        return try await poem.getDocument(as: Poem.self)
+    }
+    
+    func addPoemToUserFavorites(userId: String, poem: Poem) async throws {
+        try getUserFavoritePoemDocument(userId: userId, poemId: poem.id!).setData(from: poem, merge: false)
+    }
+    
+    func deletePoemFromUserFavorites(userId: String, poem: Poem) async throws {
+        try await getUserFavoritePoemDocument(userId: userId, poemId: poem.id!).delete()
+    }
+    
+    func getUserFavoritePoems(userId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
+        return try await getUserFavoritePoemsCollection(userId: userId)
+            .limit(to: count)
+            .startOptionally(afterDocument: lastDocument)
+            .getDocumentsWithSnapshot(as: Poem.self)
     }
 }
 

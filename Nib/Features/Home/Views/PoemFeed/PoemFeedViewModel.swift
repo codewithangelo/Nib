@@ -14,6 +14,9 @@ final class PoemFeedViewModel: ObservableObject {
     var selectedPoem: Poem? = nil
     
     @Published
+    var isFavorite: Bool = false
+    
+    @Published
     var poems: [Poem] = []
     
     private var lastDocument: DocumentSnapshot? = nil
@@ -45,5 +48,35 @@ final class PoemFeedViewModel: ObservableObject {
         self.poems = []
         self.lastDocument = nil
         self.hasMore = true
+    }
+    
+    func loadIsPoemUserFavorite(userId: String) async throws {
+        guard let poem = self.selectedPoem, let poemId = poem.id else {
+            // TODO: Throw error
+            return
+        }
+        
+        let favoritePoem = try? await poemService.getPoemFromUserFavorites(userId: userId, poemId: poemId)
+        self.isFavorite = favoritePoem != nil
+    }
+    
+    func addSelectedPoemToUserFavorites(userId: String) async throws {
+        guard let poem = self.selectedPoem else {
+            // TODO: Throw error
+            return
+        }
+        
+        try await poemService.addPoemToUserFavorites(userId: userId, poem: poem)
+        self.isFavorite = true
+    }
+    
+    func removeSelectedPoemFromUserFavorites(userId: String) async throws {
+        guard let poem = self.selectedPoem else {
+            // TODO: Throw error
+            return
+        }
+        
+        try await poemService.deletePoemFromUserFavorites(userId: userId, poem: poem)
+        self.isFavorite = false
     }
 }

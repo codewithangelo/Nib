@@ -22,4 +22,12 @@ protocol PoemServiceProtocol {
     func getPoemsByAuthorId(authorId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?)
     
     func getPoemAuthorName(authorId: String) async throws -> Username?
+    
+    func getPoemFromUserFavorites(userId: String, poemId: String) async throws -> Poem?
+    
+    func addPoemToUserFavorites(userId: String, poem: Poem) async throws
+    
+    func deletePoemFromUserFavorites(userId: String, poem: Poem) async throws
+    
+    func getUserFavoritePoems(userId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?)
 }
