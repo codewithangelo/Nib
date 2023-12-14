@@ -40,7 +40,7 @@ struct PoemFeedView: View {
                     getHeight: getPoemCardHeight
                 )
             }
-            .onAppear(perform: loadPoems)
+            .onAppear(perform: refreshPoems)
             .refreshable { refreshPoems() }
             .navigationDestination(item: $viewModel.selectedPoem) { poem in
                 UserPoemView(poem: poem)
