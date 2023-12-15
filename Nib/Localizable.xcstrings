@@ -1,0 +1,144 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Account" : {
+
+    },
+    "App" : {
+
+    },
+    "app.main.unableToGetCurrentUser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred retrieving your profile information. Please try again later."
+          }
+        }
+      }
+    },
+    "app.signIn.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred signing into Nib. Please try again later."
+          }
+        }
+      }
+    },
+    "app.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nib"
+          }
+        }
+      }
+    },
+    "app.unableToGetUser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong. Please try again later."
+          }
+        }
+      }
+    },
+    "Bullying or harassment" : {
+
+    },
+    "Contains hate speech or symbols" : {
+
+    },
+    "Contains sexual content" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete Account" : {
+
+    },
+    "Done" : {
+
+    },
+    "It's fake news or false information" : {
+
+    },
+    "It's spam" : {
+
+    },
+    "Lorem ipsum..." : {
+
+    },
+    "Mentions self-harm" : {
+
+    },
+    "Next" : {
+
+    },
+    "Preview" : {
+
+    },
+    "Publish" : {
+
+    },
+    "Report" : {
+
+    },
+    "report.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report"
+          }
+        }
+      }
+    },
+    "Settings" : {
+
+    },
+    "Sign Out" : {
+
+    },
+    "signIn.provider.divider.or" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or"
+          }
+        }
+      }
+    },
+    "Submit Report" : {
+
+    },
+    "Untitled" : {
+
+    },
+    "Username" : {
+
+    },
+    "Violence" : {
+
+    },
+    "Why are you reporting this poem?" : {
+
+    },
+    "Written by %@" : {
+
+    }
+  },
+  "version" : "1.0"
+}
