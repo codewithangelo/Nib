@@ -12,12 +12,15 @@ struct DraftView: View {
     var presentationMode: Binding<PresentationMode>
     
     @EnvironmentObject
-    var app: AppRootViewModel
+    var app: AppMainViewModel
     
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
     private var viewModel: DraftViewModel = DraftViewModel(poemService: poemService)
+    
+    @State
+    private var toast: Toast? = nil
     
     var body: some View {
         NavigationStack {
@@ -33,6 +36,7 @@ struct DraftView: View {
             }
             .padding()
             .toolbar(content: draftToolbar)
+            .toastView(toast: $toast)
         }
     }
 }
@@ -66,6 +70,7 @@ extension DraftView {
             do {
                 try await viewModel.publishPoem(user: author)
                 viewModel.reset()
+                toast = Toast(style: .success, message: "Your poem was published!")
             } catch {
                 print(error)
             }
@@ -76,7 +81,7 @@ extension DraftView {
 #Preview {
     DraftView()
         .environmentObject(
-            AppRootViewModel(
+            AppMainViewModel(
                 authenticationService: NibAuthenticationService(),
                 userService: UserService()
             )

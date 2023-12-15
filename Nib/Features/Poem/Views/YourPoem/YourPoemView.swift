@@ -9,7 +9,7 @@ import SwiftUI
 
 struct YourPoemView: View {
     @EnvironmentObject
-    var app: AppRootViewModel
+    var app: AppMainViewModel
 
     let poem: Poem
     
@@ -47,7 +47,7 @@ struct YourPoemView: View {
         )
     )
     .environmentObject(
-        AppRootViewModel(
+        AppMainViewModel(
             authenticationService: NibAuthenticationService(),
             userService: UserService()
         )

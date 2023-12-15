@@ -30,7 +30,12 @@ struct UsernameView: View {
     
     var body: some View {
         VStack {
-            TextInput(label: "Username", text: $viewModel.username)
+            Spacer().frame(height: 16)
+            UnderlinedTextField(
+                label: "Username",
+                text: $viewModel.username
+            )
+            
             Spacer()
         }
         .padding(.horizontal)

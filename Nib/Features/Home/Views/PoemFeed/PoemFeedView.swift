@@ -7,42 +7,22 @@
 
 import SwiftUI
 
-struct PoemFeedView: View {
-    let minCardHeight: CGFloat = 100
-    let maxCardHeight: CGFloat = 500
-    
-    private static let poemService: PoemServiceProtocol = PoemService()
-    
-    @StateObject
-    private var viewModel: PoemFeedViewModel = PoemFeedViewModel(poemService: poemService)
-    
+struct PoemFeedView: View {        
     @State
     private var showReportPoemView: Bool = false
     
+    @State
+    private var selectedPoem: Poem? = nil
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                Masonry(
-                    gridItems: $viewModel.poems,
-                    numOfColumns: 2,
-                    itemContent: { poem in
-                        Card(title: poem.title, content: poem.content)
-                            .frame(
-                                minHeight: minCardHeight,
-                                idealHeight: getPoemCardHeight(poem: poem),
-                                maxHeight: maxCardHeight
-                            )
-                            .onTapGesture {
-                                viewModel.selectedPoem = poem
-                            }
-                    },
-                    loadMore: loadPoems,
-                    getHeight: getPoemCardHeight
-                )
-            }
-            .onAppear(perform: refreshPoems)
-            .refreshable { refreshPoems() }
-            .navigationDestination(item: $viewModel.selectedPoem) { poem in
+            PoemMasonryView(
+                authorId: nil,
+                onPoemTap: { poem in
+                    selectedPoem = poem
+                }
+            )
+            .navigationDestination(item: $selectedPoem) { poem in
                 UserPoemView(poem: poem)
                     .toolbar(content: poemToolbar)
                     .sheet(isPresented: $showReportPoemView) {
@@ -62,34 +42,15 @@ extension PoemFeedView {
     private func poemToolbar() -> some ToolbarContent {
         ToolbarItem {
             Menu {
-                Button(role: .destructive, action: { showReportPoemView = true }, label: { Text("Report") })
+                Button(
+                    role: .destructive,
+                    action: { showReportPoemView = true },
+                    label: { Text("Report") }
+                )
             } label: {
                 Image(systemName: "ellipsis")
             }
         }
-    }
-}
-
-extension PoemFeedView {
-    private func getPoemCardHeight(poem: Poem) -> CGFloat {
-        min(minCardHeight + CGFloat(poem.content.count), maxCardHeight)
-    }
-}
-
-extension PoemFeedView {
-    private func loadPoems() {
-        Task {
-            do {
-                try await viewModel.loadPoems()
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    private func refreshPoems() {
-        viewModel.reset()
-        loadPoems()
     }
 }
 

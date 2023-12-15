@@ -9,39 +9,27 @@ import SwiftUI
 
 struct YourPoemsView: View {
     @EnvironmentObject
-    var app: AppRootViewModel
-    
-    let minCardHeight: CGFloat = 100
-    let maxCardHeight: CGFloat = 500
-    
+    var app: AppMainViewModel
+
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
     private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
     
     var body: some View {
-        ScrollView {
-            Masonry(
-                gridItems: $viewModel.poems,
-                numOfColumns: 2,
-                itemContent: { poem in
-                    Card(title: poem.title, content: poem.content)
-                        .frame(
-                            minHeight: minCardHeight,
-                            idealHeight: getPoemCardHeight(poem: poem),
-                            maxHeight: maxCardHeight
-                        )
-                        .onTapGesture { viewModel.selectedPoem = poem }
-                },
-                loadMore: loadPoems,
-                getHeight: getPoemCardHeight
+        if let currentUser = app.currentUser {
+            PoemMasonryView(
+                authorId: currentUser.userId,
+                onPoemTap: { poem in
+                    viewModel.selectedPoem = poem
+                }
             )
-        }
-        .onAppear(perform: refreshPoems)
-        .refreshable { refreshPoems() }
-        .navigationDestination(item: $viewModel.selectedPoem) { poem in
-            YourPoemView(poem: poem)
-                .toolbar(content: poemToolbar)
+            .navigationDestination(item: $viewModel.selectedPoem) { poem in
+                YourPoemView(poem: poem)
+                    .toolbar(content: poemToolbar)
+            }
+        } else {
+            ProgressView()
         }
     }
 }
@@ -64,41 +52,14 @@ extension YourPoemsView {
 }
 
 extension YourPoemsView {
-    private func getPoemCardHeight(poem: Poem) -> CGFloat {
-        min(minCardHeight + CGFloat(poem.content.count), maxCardHeight)
-    }
-}
-
-extension YourPoemsView {
     private func deleteSelectedPoem() {
         Task {
             do {
                 try await viewModel.deleteSelectedPoem()
-                viewModel.reset()
             } catch {
                 print(error)
             }
         }
-    }
-    
-    private func loadPoems() {
-        guard let currentUser = app.currentUser else {
-            // TODO: Throw error
-            return
-        }
-        
-        Task {
-            do {
-                try await viewModel.loadPoemsByCurrentUser(userId: currentUser.userId)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    private func refreshPoems() {
-        viewModel.reset()
-        loadPoems()
     }
 }
 

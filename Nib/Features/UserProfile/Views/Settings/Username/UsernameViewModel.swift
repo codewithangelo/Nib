@@ -34,4 +34,8 @@ final class UsernameViewModel: ObservableObject {
         let newUsername = Username(userId: user.userId, username: username)
         try await userService.updateUsername(oldUsername: oldUsername, newUsername: newUsername)
     }
+    
+    var isValid: Bool {
+        !self.username.isEmpty
+    }
 }

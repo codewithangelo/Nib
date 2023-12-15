@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject
-    var app: AppRootViewModel
+    var app: AppMainViewModel
+    
+    @EnvironmentObject
+    var root: AppRootViewModel
+
     
     private static let authenticationService: NibAuthenticationServiceProtocol = NibAuthenticationService()
     private static let userService: UserServiceProtocol = UserService()
@@ -29,7 +33,7 @@ struct SettingsView: View {
                 usernameButton
                     .navigationDestination(isPresented: $showUsernameView) {
                         UsernameView(
-                            currentUser: app.currentUser!,
+                            currentUser: app.currentUser,
                             onDone: onUsernameDone
                         )
                     }
@@ -95,7 +99,7 @@ extension SettingsView {
         Task {
             do {
                 try await viewModel.deleteAccount(user: user)
-                app.showSignInView = true
+                root.showSignInView = true
             } catch {
                 print(error)
             }
@@ -106,7 +110,7 @@ extension SettingsView {
         Task {
             do {
                 try viewModel.signOut()
-                app.showSignInView = true
+                root.showSignInView = true
             } catch {
                 print(error)
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreviewView: View {
     @EnvironmentObject
-    var app: AppRootViewModel
+    var app: AppMainViewModel
     
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
@@ -30,7 +30,7 @@ struct PreviewView: View {
                     .font(.title)
                 
                 if let currentUser = app.currentUser,
-                   let displayName = currentUser.displayName {
+                   let displayName = currentUser.displayName, !displayName.isEmpty {
                     Text("Written by \(displayName)")
                         .monospaced()
                         .padding(.bottom)

@@ -18,7 +18,7 @@ struct ReportPoemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Report")
+            Text("report.title")
                 .font(.headline)
                 .bold()
                 .padding(.bottom)

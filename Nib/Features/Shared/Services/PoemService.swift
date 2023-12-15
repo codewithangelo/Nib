@@ -63,15 +63,12 @@ final class PoemService: PoemServiceProtocol {
         try await poem.delete()
     }
     
-    func getPoems(count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
-        return try await poemsCollection
-            .limit(to: count)
-            .startOptionally(afterDocument: lastDocument)
-            .getDocumentsWithSnapshot(as: Poem.self)
-    }
-    
-    func getPoemsByAuthorId(authorId: String, count: Int, lastDocument: DocumentSnapshot?) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
-        let query = getPoemsByAuthorQuery(authorId: authorId)
+    func getPoems(count: Int, lastDocument: DocumentSnapshot?, authorId: String? = nil) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
+        var query: Query = getAllPoemsQuery()
+        
+        if let authorId {
+            query = getPoemsByAuthorQuery(authorId: authorId)
+        }
         
         return try await query
             .limit(to: count)
@@ -82,6 +79,10 @@ final class PoemService: PoemServiceProtocol {
     private func getPoemsByAuthorQuery(authorId: String) -> Query {
         poemsCollection
             .whereField(Poem.CodingKeys.authorId.rawValue, isEqualTo: authorId)
+    }
+    
+    private func getAllPoemsQuery() -> Query {
+        poemsCollection
     }
     
     func getPoemAuthorName(authorId: String) async throws -> Username? {

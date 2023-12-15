@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct DividerWithLabel: View {
-    let label: String
+struct DividerWithLabel<Content: View>: View {
+    @ViewBuilder
+    let label: Content
     let padding: CGFloat
     
-    init(label: String, padding: CGFloat = 20) {
+    init(label: Content, padding: CGFloat = 20) {
         self.label = label
         self.padding = padding
     }
@@ -21,7 +22,7 @@ struct DividerWithLabel: View {
             VStack {
                 Divider()
             }
-            Text(label)
+            label
                 .padding(padding)
             VStack {
                 Divider()
@@ -31,5 +32,5 @@ struct DividerWithLabel: View {
 }
 
 #Preview {
-    DividerWithLabel(label: "Or")
+    DividerWithLabel(label: Text("Or"))
 }
