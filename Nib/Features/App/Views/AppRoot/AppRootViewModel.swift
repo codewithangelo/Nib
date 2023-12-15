@@ -12,6 +12,9 @@ final class AppRootViewModel: ObservableObject {
     @Published
     var showSignInView: Bool = false
     
+    @Published
+    var toast: Toast? = nil
+    
     private let authenticationService: NibAuthenticationServiceProtocol
     
     init(authenticationService: NibAuthenticationServiceProtocol) {

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ReportPoemView: View {
+    @EnvironmentObject
+    var appRoot: AppRootViewModel
+    
     let poem: Poem
     var onReportCompleted: (() -> Void)? = nil
     
@@ -18,16 +21,8 @@ struct ReportPoemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("report.title")
-                .font(.headline)
-                .bold()
-                .padding(.bottom)
-                .frame(maxWidth: .infinity)
-            
-            Text("Why are you reporting this poem?")
-                .font(.headline)
-                .bold()
-                .padding(.bottom)
+            viewTitle
+            viewDescription
             
             reportSpamRadio
             reportSexualRadio
@@ -37,15 +32,7 @@ struct ReportPoemView: View {
             reportViolenceRadio
             reportSelfHarmRadio
             
-            Button(
-                role: .destructive,
-                action: {
-                    reportPoem()
-                    onReportCompleted?()
-                },
-                label: { Text("Submit Report") }
-            )
-            
+            submitReportButton
             Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,12 +41,38 @@ struct ReportPoemView: View {
 }
 
 extension ReportPoemView {
+    private var viewTitle: some View {
+        Text("report.title")
+            .font(.headline)
+            .bold()
+            .padding([.top, .bottom])
+            .frame(maxWidth: .infinity)
+    }
+    
+    private var viewDescription: some View {
+        Text("report.description")
+            .font(.headline)
+            .bold()
+            .padding(.bottom)
+    }
+    
+    private var submitReportButton: some View {
+        Button(
+            role: .destructive,
+            action: {
+                reportPoem()
+                onReportCompleted?()
+            },
+            label: { Text("report.buttons.submitReport") }
+        )
+    }
+    
     private var reportSpamRadio: some View {
         RadioButton(
             id: ReportReason.spam.rawValue,
             checked: viewModel.reason == ReportReason.spam,
             onCheck: onRadioCheck,
-            label: { Text("It's spam") }
+            label: { Text("report.radios.spam") }
         )
     }
     
@@ -68,7 +81,7 @@ extension ReportPoemView {
             id: ReportReason.sexual.rawValue,
             checked: viewModel.reason == ReportReason.sexual,
             onCheck: onRadioCheck,
-            label: { Text("Contains sexual content") }
+            label: { Text("report.radios.sexual") }
         )
     }
     
@@ -77,7 +90,7 @@ extension ReportPoemView {
             id: ReportReason.hateSpeech.rawValue,
             checked: viewModel.reason == ReportReason.hateSpeech,
             onCheck: onRadioCheck,
-            label: { Text("Contains hate speech or symbols") }
+            label: { Text("report.radios.hateSpeech") }
         )
     }
     
@@ -86,7 +99,7 @@ extension ReportPoemView {
             id: ReportReason.bullying.rawValue,
             checked: viewModel.reason == ReportReason.bullying,
             onCheck: onRadioCheck,
-            label: { Text("Bullying or harassment") }
+            label: { Text("report.radios.bullying") }
         )
     }
     
@@ -95,7 +108,7 @@ extension ReportPoemView {
             id: ReportReason.fakeNews.rawValue,
             checked: viewModel.reason == ReportReason.fakeNews,
             onCheck: onRadioCheck,
-            label: { Text("It's fake news or false information") }
+            label: { Text("report.radios.fakeNews") }
         )
     }
     
@@ -104,7 +117,7 @@ extension ReportPoemView {
             id: ReportReason.violent.rawValue,
             checked: viewModel.reason == ReportReason.violent,
             onCheck: onRadioCheck,
-            label: { Text("Violence") }
+            label: { Text("report.radios.violent") }
         )
     }
     
@@ -113,7 +126,7 @@ extension ReportPoemView {
             id: ReportReason.selfHarm.rawValue,
             checked: viewModel.reason == ReportReason.selfHarm,
             onCheck: onRadioCheck,
-            label: { Text("Mentions self-harm") }
+            label: { Text("report.radios.selfHarm") }
         )
     }
 }
@@ -121,7 +134,10 @@ extension ReportPoemView {
 extension ReportPoemView {
     private func onRadioCheck(id: String) -> Void {
         guard let reason = ReportReason.ID(rawValue: id) else {
-            // TODO: Throw error
+            appRoot.toast = Toast(
+                style: .error,
+                message: NSLocalizedString("report.error", comment: "")
+            )
             return
         }
         
@@ -132,7 +148,10 @@ extension ReportPoemView {
 extension ReportPoemView {
     private func reportPoem() {
         guard let poemId = poem.id else {
-            // TODO: Throw error
+            appRoot.toast = Toast(
+                style: .error,
+                message: NSLocalizedString("report.error", comment: "")
+            )
             return
         }
         
@@ -140,7 +159,10 @@ extension ReportPoemView {
             do {
                 try await viewModel.confirmReport(poemId: poemId)
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("report.error", comment: "")
+                )
             }
         }
     }

@@ -18,9 +18,11 @@ struct ToastModifier: ViewModifier {
                 ZStack {
                     mainToastView()
                         .offset(y: 32)
-                        .onAppear(perform: showToast)
                 }.animation(.spring(), value: toast)
             )
+            .onChange(of: toast) {
+                showToast()
+            }
     }
     
     @ViewBuilder func mainToastView() -> some View {
@@ -43,7 +45,7 @@ struct ToastModifier: ViewModifier {
         
         UIImpactFeedbackGenerator(style: .light)
             .impactOccurred()
-    
+        
         if toast.duration > 0 {
             workItem?.cancel()
             

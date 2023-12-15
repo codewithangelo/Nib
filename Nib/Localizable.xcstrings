@@ -51,15 +51,6 @@
         }
       }
     },
-    "Bullying or harassment" : {
-
-    },
-    "Contains hate speech or symbols" : {
-
-    },
-    "Contains sexual content" : {
-
-    },
     "Delete" : {
 
     },
@@ -69,16 +60,7 @@
     "Done" : {
 
     },
-    "It's fake news or false information" : {
-
-    },
-    "It's spam" : {
-
-    },
     "Lorem ipsum..." : {
-
-    },
-    "Mentions self-harm" : {
 
     },
     "Next" : {
@@ -92,6 +74,116 @@
     },
     "Report" : {
 
+    },
+    "report.buttons.submitReport" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit Report"
+          }
+        }
+      }
+    },
+    "report.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Why are you reporting this poem?"
+          }
+        }
+      }
+    },
+    "report.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong. Please try again later."
+          }
+        }
+      }
+    },
+    "report.radios.bullying" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bullying or harassment"
+          }
+        }
+      }
+    },
+    "report.radios.fakeNews" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contains misinformation or spreading fake news"
+          }
+        }
+      }
+    },
+    "report.radios.hateSpeech" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contains hate speech or symbols"
+          }
+        }
+      }
+    },
+    "report.radios.selfHarm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentions self-harm"
+          }
+        }
+      }
+    },
+    "report.radios.sexual" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contains sexual content"
+          }
+        }
+      }
+    },
+    "report.radios.spam" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It's spam"
+          }
+        }
+      }
+    },
+    "report.radios.violent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Violent"
+          }
+        }
+      }
     },
     "report.title" : {
       "extractionState" : "manual",
@@ -121,19 +213,10 @@
         }
       }
     },
-    "Submit Report" : {
-
-    },
     "Untitled" : {
 
     },
     "Username" : {
-
-    },
-    "Violence" : {
-
-    },
-    "Why are you reporting this poem?" : {
 
     },
     "Written by %@" : {

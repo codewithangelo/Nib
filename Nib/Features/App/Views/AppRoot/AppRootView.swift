@@ -13,12 +13,11 @@ struct AppRootView: View {
     @StateObject
     var viewModel: AppRootViewModel = AppRootViewModel(authenticationService: authenticationService)
     
-    @State private var toast: Toast? = nil
-    
     var body: some View {
         ZStack {
             if (!viewModel.showSignInView) {
                 AppMainView()
+                    .toastView(toast: $viewModel.toast)
                     .environmentObject(viewModel)
             }
         }
@@ -28,7 +27,7 @@ struct AppRootView: View {
                 onSignInCompleted: onSignInCompleted,
                 onSignInError: onSignInError
             )
-            .toastView(toast: $toast)
+            .toastView(toast: $viewModel.toast)
         }
     }
 }
@@ -39,7 +38,7 @@ extension AppRootView {
     }
     
     private func onSignInError() {
-        toast = Toast(
+        viewModel.toast = Toast(
             style: .error,
             message: NSLocalizedString("app.signIn.error", comment: "")
         )
