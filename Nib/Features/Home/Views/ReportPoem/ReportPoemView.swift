@@ -158,6 +158,10 @@ extension ReportPoemView {
         Task {
             do {
                 try await viewModel.confirmReport(poemId: poemId)
+                appRoot.toast = Toast(
+                    style: .success,
+                    message: NSLocalizedString("report.success", comment: "")
+                )
             } catch {
                 appRoot.toast = Toast(
                     style: .error,
