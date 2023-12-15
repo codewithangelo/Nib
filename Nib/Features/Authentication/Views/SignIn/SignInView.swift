@@ -20,7 +20,7 @@ struct SignInView: View {
         VStack {
             appTitle
             signInWithAppleButton
-            DividerWithLabel(label: "Or")
+            DividerWithLabel(label: Text("signIn.provider.divider.or"))
             signInWithGoogleButton
         }
         .padding(.horizontal)
@@ -29,7 +29,7 @@ struct SignInView: View {
 
 extension SignInView {
     private var appTitle: some View {
-        Text("Nib")
+        Text("app.title")
             .font(.largeTitle)
             .bold()
     }
