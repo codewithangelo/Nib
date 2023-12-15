@@ -9,55 +9,46 @@ import SwiftUI
 
 struct AppRootView: View {
     private static let authenticationService: NibAuthenticationServiceProtocol = NibAuthenticationService()
-    private static let usernService: UserServiceProtocol = UserService()
     
     @StateObject
-    var viewModel: AppRootViewModel = AppRootViewModel(
-        authenticationService: authenticationService,
-        userService: usernService
-    )
+    var viewModel: AppRootViewModel = AppRootViewModel(authenticationService: authenticationService)
+    
+    @State private var toast: Toast? = nil
     
     var body: some View {
         ZStack {
             if (!viewModel.showSignInView) {
-                TabView {
-                    PoemFeedView()
-                        .tabItem { Image(systemName: "house") }
-                    
-                    DraftView()
-                        .tabItem { Image(systemName: "plus.app") }
-                        .environmentObject(viewModel)
-                    
-                    YourProfileView()
-                        .tabItem { Image(systemName: "person.crop.circle") }
-                        .environmentObject(viewModel)
-                }
-                .onAppear(perform: loadCurrentUserData)
+                AppMainView()
+                    .environmentObject(viewModel)
             }
         }
         .onAppear(perform: checkIsUserAuthenticated)
         .fullScreenCover(isPresented: $viewModel.showSignInView) {
             SignInView(
-                onSignInCompleted: { viewModel.showSignInView = false },
-                onSignInError: { }
+                onSignInCompleted: onSignInCompleted,
+                onSignInError: onSignInError
             )
+            .toastView(toast: $toast)
         }
+    }
+}
+
+extension AppRootView {
+    private func onSignInCompleted() {
+        viewModel.showSignInView = false
+    }
+    
+    private func onSignInError() {
+        toast = Toast(
+            style: .error,
+            message: NSLocalizedString("app.signIn.error", comment: "")
+        )
     }
 }
 
 extension AppRootView {
     private func checkIsUserAuthenticated() {
         viewModel.checkIsUserAuthenticated()
-    }
-    
-    private func loadCurrentUserData() {
-        Task {
-            do {
-                try await viewModel.loadCurrentUserData()
-            } catch {
-                print(error)
-            }
-        }
     }
 }
 
