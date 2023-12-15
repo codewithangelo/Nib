@@ -10,7 +10,6 @@ import SwiftUI
 import UIKit
 
 struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
-    
     let type: ASAuthorizationAppleIDButton.ButtonType
     let style: ASAuthorizationAppleIDButton.Style
     
@@ -27,7 +26,7 @@ struct SignInWithAppleButton: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     let action: () -> Void
-
+    
     init(action: @escaping () -> Void) {
         self.action = action
     }
