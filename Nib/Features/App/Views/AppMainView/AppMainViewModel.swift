@@ -71,6 +71,16 @@ final class AppMainViewModel: ObservableObject {
         }
     }
     
+    func refreshCurrentUserDataInBackground() async throws {
+        guard let authUser = try? authenticationService.getAuthenticatedUser() else {
+            return
+        }
+        guard let currentUser = try? await userService.getUser(userId: authUser.uid) else {
+            throw AppMainViewModelError.unableToGetCurrentUser
+        }
+        self.currentUser = currentUser
+    }
+    
     private func createNewUser(authUser: AuthDataResult) async throws {
         do {
             let newUser = User(authDataResult: authUser)

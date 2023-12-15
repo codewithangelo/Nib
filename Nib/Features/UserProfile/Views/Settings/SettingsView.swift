@@ -82,7 +82,7 @@ extension SettingsView {
     private func onUsernameDone() {
         Task {
             do {
-                try await app.loadCurrentUserData()
+                try await app.refreshCurrentUserDataInBackground()
                 showUsernameView = false
             } catch {
                 print(error)
