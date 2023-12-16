@@ -9,14 +9,26 @@ import Foundation
 
 @MainActor
 final class UserPoemViewModel: ObservableObject {
-    public enum State: Equatable {
+    enum UserPoemViewModelError: LocalizedError {
+        case unableToGetPoemAuthor
+        
+        var errorDescription: String? {
+            switch self {
+            case .unableToGetPoemAuthor:
+                return NSLocalizedString("app.main.unableToGetCurrentUser", comment: "")
+            }
+        }
+    }
+    
+    enum State: Equatable {
+        case unset
         case loading
-        case error
+        case error(error: String?)
         case success(author: Username)
     }
     
     @Published
-    var state: State = .loading
+    var state: State = .unset
     
     private let poemService: PoemServiceProtocol
     
@@ -24,16 +36,16 @@ final class UserPoemViewModel: ObservableObject {
         self.poemService = poemService
     }
     
-    func loadAuthorName(poem: Poem) async {
+    func loadAuthorName(poem: Poem) async throws {
         do {
-            guard let authorName = try await poemService.getPoemAuthorName(authorId: poem.authorId) else {
-                self.state = .error
-                // TODO: Throw error
-                return
+            self.state = .loading
+            guard let authorName = try? await poemService.getPoemAuthorName(authorId: poem.authorId) else {
+                throw UserPoemViewModelError.unableToGetPoemAuthor
             }
             self.state = .success(author: authorName)
         } catch {
-            self.state = .error
+            self.state = .error(error: UserPoemViewModelError.unableToGetPoemAuthor.errorDescription)
+            throw UserPoemViewModelError.unableToGetPoemAuthor
         }
     }
 }

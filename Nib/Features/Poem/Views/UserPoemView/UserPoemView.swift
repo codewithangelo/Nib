@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UserPoemView: View {
+    @EnvironmentObject
+    var appRoot: AppRootViewModel
+    
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
@@ -18,21 +21,30 @@ struct UserPoemView: View {
     var body: some View {
         ScrollView {
             switch viewModel.state {
+            case .unset:
+                EmptyView()
             case .loading:
-                VStack {
-                    Spacer()
-                    ProgressView()
+                ProgressView()
+            case .error:
+                VStack(alignment: .leading) {
+                    Text(poem.title)
+                        .bold()
+                        .font(.title)
+                        .padding(.bottom)
+                    
+                    Text(poem.content)
+                        .monospaced()
+                    
                     Spacer()
                 }
-            case .error:
-                EmptyView()
+                .padding()
             case .success(let author):
                 VStack(alignment: .leading) {
                     Text(poem.title)
                         .bold()
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(.title)
                     
-                    Text("Written by \(author.username)")
+                    Text("poem.writtenBy \(author.username)")
                         .monospaced()
                         .padding(.bottom)
                     
@@ -52,7 +64,14 @@ struct UserPoemView: View {
 extension UserPoemView {
     func loadAuthor() {
         Task {
-            await viewModel.loadAuthorName(poem: poem)
+            do {
+                try await viewModel.loadAuthorName(poem: poem)
+            } catch {
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("poem.author.error", comment: "")
+                )
+            }
         }
     }
 }

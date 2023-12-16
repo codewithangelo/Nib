@@ -66,6 +66,17 @@
     "Next" : {
 
     },
+    "poem.author.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with getting the author of this poem."
+          }
+        }
+      }
+    },
     "poem.menu.button.report" : {
       "extractionState" : "manual",
       "localizations" : {
