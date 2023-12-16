@@ -42,7 +42,7 @@ extension YourPoemsView {
                 Button(
                     role: .destructive,
                     action: deleteSelectedPoem,
-                    label: { Text("Delete") }
+                    label: { Text("poem.menu.buttons.delete") }
                 )
             } label: {
                 Image(systemName: "ellipsis")

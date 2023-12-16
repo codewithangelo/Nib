@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "app.main.unableToGetCurrentUser" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -47,9 +44,6 @@
           }
         }
       }
-    },
-    "Delete" : {
-
     },
     "poem.author.error" : {
       "extractionState" : "manual",
@@ -95,7 +89,18 @@
         }
       }
     },
-    "poem.menu.button.report" : {
+    "poem.menu.buttons.delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "poem.menu.buttons.report" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

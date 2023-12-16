@@ -42,7 +42,7 @@ extension PoemFeedView {
                 Button(
                     role: .destructive,
                     action: showReportSheet,
-                    label: { Text("poem.menu.button.report") }
+                    label: { Text("poem.menu.buttons.report") }
                 )
             } label: {
                 Image(systemName: "ellipsis")
