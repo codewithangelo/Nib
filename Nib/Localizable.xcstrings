@@ -4,13 +4,24 @@
     "" : {
 
     },
+    "app.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with Nib. Please try reopening this app later."
+          }
+        }
+      }
+    },
     "app.main.unableToGetCurrentUser" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An error occurred retrieving your profile information. Please try again later."
+            "value" : "Something went wrong retrieving your profile information. Please try again later."
           }
         }
       }
@@ -21,7 +32,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An error occurred signing into Nib. Please try again later."
+            "value" : "Something went wrong signing into Nib. Please try again later."
           }
         }
       }
@@ -98,7 +109,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Daedalus would be impressed.\nBy how high up we are\nwith our bronze wings.\nMankind’s ascent.\n\nBut he would yell,\n“Come back down!”.\nBecause it would remind him\nof Icarus’ descent.\nWhen he flew too close to the sun."
+            "value" : "Daedalus would be impressed\nBy how high up we are\nwith our bronze wings\nMankind's ascent\n\nHe would yell,\n“Come back down!”\nBecause it would remind him\nHow Icarus' descent\nwhen he flew too close to the sun"
           }
         }
       }

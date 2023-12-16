@@ -28,7 +28,7 @@ struct AppMainView: View {
             case .loading:
                 ProgressView()
             case .error:
-                Text("app.main.unableToGetCurrentUser")
+                Text("app.error")
             case .success:
                 TabView(selection: $viewModel.tabSelection) {
                     PoemFeedView()
