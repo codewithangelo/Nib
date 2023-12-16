@@ -60,9 +60,6 @@
     "Delete Account" : {
 
     },
-    "Done" : {
-
-    },
     "poem.author.error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -307,6 +304,39 @@
     },
     "Settings" : {
 
+    },
+    "settings.username.field.prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        }
+      }
+    },
+    "settings.username.toolbar.buttons.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "settings.username.toolbar.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        }
+      }
     },
     "Sign Out" : {
 

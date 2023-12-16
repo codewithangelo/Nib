@@ -32,14 +32,14 @@ struct UsernameView: View {
         VStack {
             Spacer().frame(height: 16)
             UnderlinedTextField(
-                label: "Username",
+                label: NSLocalizedString("settings.username.field.prompt", comment: ""),
                 text: $viewModel.username
             )
             
             Spacer()
         }
         .padding(.horizontal)
-        .navigationTitle("Username")
+        .navigationTitle("settings.username.toolbar.title")
         .toolbar(content: usernameToolbar)
     }
 }
@@ -50,7 +50,7 @@ extension UsernameView {
         ToolbarItem(placement: .topBarTrailing) {
             Button(
                 action: confirmUsername,
-                label: { Text("Done") }
+                label: { Text("settings.username.toolbar.buttons.done") }
             )
         }
     }
