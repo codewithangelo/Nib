@@ -9,6 +9,8 @@ import Foundation
 
 @MainActor
 final class UsernameViewModel: ObservableObject {
+    let usernameTextLimit: Int = 30
+    
     @Published
     var username: String
     
@@ -36,6 +38,6 @@ final class UsernameViewModel: ObservableObject {
     }
     
     var isValid: Bool {
-        !self.username.isEmpty
+        self.username.count <= usernameTextLimit
     }
 }

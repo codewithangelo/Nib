@@ -52,6 +52,7 @@ extension UsernameView {
                 action: confirmUsername,
                 label: { Text("settings.username.toolbar.buttons.done") }
             )
+            .disabled(!viewModel.isValid)
         }
     }
 }
