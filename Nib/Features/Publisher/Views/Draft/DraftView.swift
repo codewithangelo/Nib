@@ -33,11 +33,19 @@ struct DraftView: View {
                 .bold()
                 .font(.title)
                 .autocorrectionDisabled()
-                TextField(
-                    NSLocalizedString("poem.draft.content.placeholder", comment: ""),
-                    text: $viewModel.content,
-                    axis: .vertical
-                )
+                
+                ZStack(alignment: .topLeading) {
+                    if viewModel.content.isEmpty {
+                        Text("poem.draft.content.placeholder")
+                            .foregroundStyle(Color.gray.opacity(0.6))
+                    }
+                    
+                    TextField(
+                        "",
+                        text: $viewModel.content,
+                        axis: .vertical
+                    )
+                }
                 .monospaced()
                 .autocorrectionDisabled()
                 Spacer()
