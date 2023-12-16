@@ -62,6 +62,7 @@ final class AppMainViewModel: ObservableObject {
         
         do {
             guard let currentUser = try? await userService.getUser(userId: authUser.uid) else {
+                self.state = .error(error: AppMainViewModelError.unableToGetCurrentUser.errorDescription)
                 throw AppMainViewModelError.unableToGetCurrentUser
             }
             self.state = .success(currentUser: currentUser)
