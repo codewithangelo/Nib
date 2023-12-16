@@ -52,7 +52,7 @@ struct ToastModifier: ViewModifier {
             let task = DispatchWorkItem {
                 dismissToast()
             }
-            print(task)
+            
             workItem = task
             DispatchQueue.main.asyncAfter(deadline: .now() + toast.duration, execute: task)
         }
