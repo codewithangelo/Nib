@@ -30,4 +30,8 @@ final class DraftViewModel: ObservableObject {
         self.title = ""
         self.content = ""
     }
+    
+    var isValid: Bool {
+        !self.title.isEmpty && !self.content.isEmpty
+    }
 }

@@ -70,6 +70,7 @@ extension DraftView {
                 },
                 label: { Text("poem.draft.toolbar.buttons.next") }
             )
+            .disabled(!viewModel.isValid)
         }
     }
 }
