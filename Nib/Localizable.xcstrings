@@ -59,6 +59,17 @@
         }
       }
     },
+    "poem.delete.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with deleting this poem. Please try again later."
+          }
+        }
+      }
+    },
     "poem.draft.content.placeholder" : {
       "extractionState" : "manual",
       "localizations" : {

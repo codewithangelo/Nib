@@ -9,15 +9,18 @@ import SwiftUI
 
 struct YourPoemsView: View {
     @EnvironmentObject
-    var app: AppMainViewModel
-
+    var appRoot: AppRootViewModel
+    
+    @EnvironmentObject
+    var appMain: AppMainViewModel
+    
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
     private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
     
     var body: some View {
-        if let currentUser = app.currentUser {
+        if let currentUser = appMain.currentUser {
             PoemMasonryView(
                 authorId: currentUser.userId,
                 onPoemTap: { poem in
@@ -57,7 +60,10 @@ extension YourPoemsView {
             do {
                 try await viewModel.deleteSelectedPoem()
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("poem.delete.error", comment: "")
+                )
             }
         }
     }
