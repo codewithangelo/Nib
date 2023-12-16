@@ -22,7 +22,7 @@ struct YourPoemView: View {
                 
                 if let currentUser = app.currentUser,
                    let displayName = currentUser.displayName {
-                    Text("Written by \(displayName)")
+                    Text("poem.writtenBy \(displayName)")
                         .monospaced()
                         .padding(.bottom)
                 }
