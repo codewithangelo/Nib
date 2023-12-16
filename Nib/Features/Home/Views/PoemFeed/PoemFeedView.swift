@@ -7,30 +7,27 @@
 
 import SwiftUI
 
-struct PoemFeedView: View {        
-    @State
-    private var showReportPoemView: Bool = false
-    
-    @State
-    private var selectedPoem: Poem? = nil
+struct PoemFeedView: View {
+    @StateObject
+    private var viewModel: PoemFeedViewModel = PoemFeedViewModel()
     
     var body: some View {
         NavigationStack {
             PoemMasonryView(
                 authorId: nil,
                 onPoemTap: { poem in
-                    selectedPoem = poem
+                    viewModel.selectedPoem = poem
                 }
             )
-            .navigationDestination(item: $selectedPoem) { poem in
+            .navigationDestination(item: $viewModel.selectedPoem) { poem in
                 UserPoemView(poem: poem)
                     .toolbar(content: poemToolbar)
-                    .sheet(isPresented: $showReportPoemView) {
+                    .sheet(isPresented: $viewModel.showReportPoemView) {
                         ReportPoemView(
                             poem: poem,
-                            onReportCompleted: { showReportPoemView = false }
+                            onReportCompleted: hideReportSheet
                         )
-                            .presentationDetents([.medium, .large])
+                        .presentationDetents([.medium, .large])
                     }
             }
         }
@@ -44,13 +41,23 @@ extension PoemFeedView {
             Menu {
                 Button(
                     role: .destructive,
-                    action: { showReportPoemView = true },
-                    label: { Text("Report") }
+                    action: showReportSheet,
+                    label: { Text("poem.menu.button.report") }
                 )
             } label: {
                 Image(systemName: "ellipsis")
             }
         }
+    }
+}
+
+extension PoemFeedView {
+    private func hideReportSheet() {
+        viewModel.showReportPoemView = false
+    }
+    
+    private func showReportSheet() {
+        viewModel.showReportPoemView = true
     }
 }
 

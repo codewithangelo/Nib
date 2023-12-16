@@ -17,6 +17,7 @@
 		871611772B2BFA08007C2A6E /* ExtendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871611762B2BFA08007C2A6E /* ExtendView.swift */; };
 		873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490B82B292FEA0048CD5D /* RadioButton.swift */; };
 		873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490BB2B293B3C0048CD5D /* PreviewView.swift */; };
+		87990D752B2D20C3008A5134 /* PoemFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87990D742B2D20C3008A5134 /* PoemFeedViewModel.swift */; };
 		87A3C1D72B268222002E274D /* NibApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D62B268222002E274D /* NibApp.swift */; };
 		87A3C1D92B268222002E274D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D82B268222002E274D /* ContentView.swift */; };
 		87A3C1DB2B268222002E274D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A3C1DA2B268222002E274D /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 		871611762B2BFA08007C2A6E /* ExtendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendView.swift; sourceTree = "<group>"; };
 		873490B82B292FEA0048CD5D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		873490BB2B293B3C0048CD5D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		87990D742B2D20C3008A5134 /* PoemFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemFeedViewModel.swift; sourceTree = "<group>"; };
 		87A3C1D32B268222002E274D /* Nib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A3C1D62B268222002E274D /* NibApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibApp.swift; sourceTree = "<group>"; };
 		87A3C1D82B268222002E274D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				87CAD91D2B2810C7000AE56D /* PoemFeedView.swift */,
+				87990D742B2D20C3008A5134 /* PoemFeedViewModel.swift */,
 			);
 			path = PoemFeed;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				87E1B9942B26890400C2B0EC /* SignInWithGoogleHelper.swift in Sources */,
 				87E1B96A2B26832A00C2B0EC /* User.swift in Sources */,
 				87E1B9B42B26956400C2B0EC /* YourProfileView.swift in Sources */,
+				87990D752B2D20C3008A5134 /* PoemFeedViewModel.swift in Sources */,
 				87E1B9A92B268BD900C2B0EC /* NibAuthenticationServiceProtocol.swift in Sources */,
 				87CAD9262B281B8F000AE56D /* ReportedPoem.swift in Sources */,
 				87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */,
