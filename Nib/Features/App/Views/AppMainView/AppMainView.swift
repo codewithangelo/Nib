@@ -34,6 +34,7 @@ struct AppMainView: View {
                     PoemFeedView()
                         .tag(AppMainViewModel.Tab.home)
                         .tabItem { Image(systemName: "house") }
+                        .environmentObject(appRoot)
                     
                     DraftView()
                         .tag(AppMainViewModel.Tab.publisher)

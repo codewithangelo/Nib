@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PoemMasonryView<Content: View>: View {
+    @EnvironmentObject
+    var appRoot: AppRootViewModel
+    
     let minCardHeight: CGFloat = 100
     let maxCardHeight: CGFloat = 500
     
@@ -59,7 +62,10 @@ extension PoemMasonryView {
             do {
                 try await viewModel.loadPoems(authorId: authorId)
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("masonry.loadPoems.error", comment: "")
+                )
             }
         }
     }
