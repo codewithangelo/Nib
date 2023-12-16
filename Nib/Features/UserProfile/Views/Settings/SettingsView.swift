@@ -9,11 +9,10 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject
-    var app: AppMainViewModel
+    var appMain: AppMainViewModel
     
     @EnvironmentObject
-    var root: AppRootViewModel
-
+    var appRoot: AppRootViewModel
     
     private static let authenticationService: NibAuthenticationServiceProtocol = NibAuthenticationService()
     private static let userService: UserServiceProtocol = UserService()
@@ -33,7 +32,7 @@ struct SettingsView: View {
                 usernameButton
                     .navigationDestination(isPresented: $showUsernameView) {
                         UsernameView(
-                            currentUser: app.currentUser,
+                            currentUser: appMain.currentUser,
                             onDone: onUsernameDone
                         )
                     }
@@ -67,7 +66,7 @@ extension SettingsView {
             }
         )
     }
-            
+    
     private var signOutButton: some View {
         Button(
             action: signOut,
@@ -82,26 +81,32 @@ extension SettingsView {
     private func onUsernameDone() {
         Task {
             do {
-                try await app.refreshCurrentUserDataInBackground()
+                try await appMain.refreshCurrentUserDataInBackground()
                 showUsernameView = false
             } catch {
-                print(error)
+                // Silently error
             }
         }
     }
     
     private func deleteAccount() {
-        guard let user = app.currentUser else {
-            // TODO: Handle error
+        guard let user = appMain.currentUser else {
+            appRoot.toast = Toast(
+                style: .error,
+                message: NSLocalizedString("settings.deleteAccount.error", comment: "")
+            )
             return
         }
         
         Task {
             do {
                 try await viewModel.deleteAccount(user: user)
-                root.showSignInView = true
+                appRoot.showSignInView = true
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("settings.deleteAccount.error", comment: "")
+                )
             }
         }
     }
@@ -110,9 +115,12 @@ extension SettingsView {
         Task {
             do {
                 try viewModel.signOut()
-                root.showSignInView = true
+                appRoot.showSignInView = true
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("settings.signOut.error", comment: "")
+                )
             }
         }
     }
