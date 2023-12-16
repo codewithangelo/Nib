@@ -58,6 +58,10 @@ extension PoemMasonryView {
 
 extension PoemMasonryView {
     private func loadPoems() {
+        guard !appRoot.showSignInView else {
+            return
+        }
+        
         Task {
             do {
                 try await viewModel.loadPoems(authorId: authorId)
