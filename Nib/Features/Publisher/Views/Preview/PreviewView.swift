@@ -25,14 +25,18 @@ struct PreviewView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text(title)
-                    .bold()
-                    .font(.title)
-                
                 if let currentUser = app.currentUser,
                    let displayName = currentUser.displayName, !displayName.isEmpty {
+                    Text(title)
+                        .bold()
+                        .font(.title)
                     Text("poem.writtenBy \(displayName)")
                         .monospaced()
+                        .padding(.bottom)
+                } else {
+                    Text(title)
+                        .bold()
+                        .font(.title)
                         .padding(.bottom)
                 }
                 

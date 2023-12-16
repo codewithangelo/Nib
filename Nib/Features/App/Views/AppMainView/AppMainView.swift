@@ -39,6 +39,7 @@ struct AppMainView: View {
                     DraftView()
                         .tag(AppMainViewModel.Tab.publisher)
                         .tabItem { Image(systemName: "plus.app") }
+                        .environmentObject(appRoot)
                         .environmentObject(viewModel)
                     
                     YourProfileView()
