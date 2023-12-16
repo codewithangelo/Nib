@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UsernameView: View {
+    @EnvironmentObject
+    var appRoot: AppRootViewModel
+    
     private static let userService: UserServiceProtocol = UserService()
     
     @StateObject
@@ -64,7 +67,10 @@ extension UsernameView {
                 try await viewModel.updateUsername()
                 onDone()
             } catch {
-                print(error)
+                appRoot.toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("settings.username.update.error", comment: "")
+                )
             }
         }
     }
