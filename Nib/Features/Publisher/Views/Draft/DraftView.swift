@@ -25,13 +25,21 @@ struct DraftView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                TextField("Untitled", text: $viewModel.title, axis: .vertical)
-                    .bold()
-                    .font(.title)
-                    .autocorrectionDisabled()
-                TextField("Lorem ipsum...", text: $viewModel.content, axis: .vertical)
-                    .monospaced()
-                    .autocorrectionDisabled()
+                TextField(
+                    NSLocalizedString("poem.draft.title.placeholder", comment: ""),
+                    text: $viewModel.title,
+                    axis: .vertical
+                )
+                .bold()
+                .font(.title)
+                .autocorrectionDisabled()
+                TextField(
+                    NSLocalizedString("poem.draft.content.placeholder", comment: ""),
+                    text: $viewModel.content,
+                    axis: .vertical
+                )
+                .monospaced()
+                .autocorrectionDisabled()
                 Spacer()
             }
             .padding()
@@ -53,7 +61,7 @@ extension DraftView {
                         publish: publishPoem
                     )
                 },
-                label: { Text("Next") }
+                label: { Text("poem.draft.toolbar.buttons.next") }
             )
         }
     }
@@ -62,7 +70,10 @@ extension DraftView {
 extension DraftView {
     private func publishPoem() {
         guard let author = app.currentUser else {
-            // TODO: Throw error
+            toast = Toast(
+                style: .error,
+                message: NSLocalizedString("poem.publish.error", comment: "")
+            )
             return
         }
         
@@ -70,9 +81,15 @@ extension DraftView {
             do {
                 try await viewModel.publishPoem(user: author)
                 viewModel.reset()
-                toast = Toast(style: .success, message: "Your poem was published!")
+                toast = Toast(
+                    style: .success,
+                    message: NSLocalizedString("poem.publish.success", comment: "")
+                )
             } catch {
-                print(error)
+                toast = Toast(
+                    style: .error,
+                    message: NSLocalizedString("poem.publish.error", comment: "")
+                )
             }
         }
     }

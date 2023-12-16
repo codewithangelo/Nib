@@ -31,7 +31,7 @@ struct PreviewView: View {
                 
                 if let currentUser = app.currentUser,
                    let displayName = currentUser.displayName, !displayName.isEmpty {
-                    Text("Written by \(displayName)")
+                    Text("poem.writtenBy \(displayName)")
                         .monospaced()
                         .padding(.bottom)
                 }
@@ -44,7 +44,7 @@ struct PreviewView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
         }
-        .navigationTitle("Preview")
+        .navigationTitle("poem.preview.toolbar.title")
         .toolbar(content: previewToolbar)
     }
 }
@@ -58,7 +58,7 @@ extension PreviewView {
                     publish()
                     presentationMode.wrappedValue.dismiss()
                 },
-                label: { Text("Publish") }
+                label: { Text("poem.preview.toolbar.buttons.publish") }
             )
         }
     }

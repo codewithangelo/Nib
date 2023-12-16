@@ -60,12 +60,6 @@
     "Done" : {
 
     },
-    "Lorem ipsum..." : {
-
-    },
-    "Next" : {
-
-    },
     "poem.author.error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -73,6 +67,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong with getting the author of this poem."
+          }
+        }
+      }
+    },
+    "poem.draft.content.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Thinker\nForever he pondered\nWhat clothes to wear\nHis mind wandered\nChoices he could not bear\nFull of uncertainty \nHe forgets his nudity"
+          }
+        }
+      }
+    },
+    "poem.draft.title.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untitled"
+          }
+        }
+      }
+    },
+    "poem.draft.toolbar.buttons.next" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
           }
         }
       }
@@ -88,6 +115,50 @@
         }
       }
     },
+    "poem.preview.toolbar.buttons.publish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Publish"
+          }
+        }
+      }
+    },
+    "poem.preview.toolbar.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview"
+          }
+        }
+      }
+    },
+    "poem.publish.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong publishing this poem. Please try again later."
+          }
+        }
+      }
+    },
+    "poem.publish.success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your poem was published!"
+          }
+        }
+      }
+    },
     "poem.writtenBy %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -98,12 +169,6 @@
           }
         }
       }
-    },
-    "Preview" : {
-
-    },
-    "Publish" : {
-
     },
     "report.buttons.submitReport" : {
       "extractionState" : "manual",
@@ -254,13 +319,7 @@
         }
       }
     },
-    "Untitled" : {
-
-    },
     "Username" : {
-
-    },
-    "Written by %@" : {
 
     }
   },
