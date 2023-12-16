@@ -4,12 +4,6 @@
     "" : {
 
     },
-    "Account" : {
-
-    },
-    "App" : {
-
-    },
     "app.main.unableToGetCurrentUser" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -55,9 +49,6 @@
       }
     },
     "Delete" : {
-
-    },
-    "Delete Account" : {
 
     },
     "poem.author.error" : {
@@ -302,8 +293,71 @@
         }
       }
     },
-    "Settings" : {
-
+    "settings.list.buttons.deleteAccount" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Account"
+          }
+        }
+      }
+    },
+    "settings.list.buttons.signOut" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out"
+          }
+        }
+      }
+    },
+    "settings.list.buttons.username" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        }
+      }
+    },
+    "settings.list.section.title.account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
+          }
+        }
+      }
+    },
+    "settings.list.section.title.app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App"
+          }
+        }
+      }
+    },
+    "settings.toolbar.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
     },
     "settings.username.field.prompt" : {
       "extractionState" : "manual",
@@ -338,9 +392,6 @@
         }
       }
     },
-    "Sign Out" : {
-
-    },
     "signIn.provider.divider.or" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -351,9 +402,6 @@
           }
         }
       }
-    },
-    "Username" : {
-
     }
   },
   "version" : "1.0"

@@ -29,7 +29,7 @@ struct SettingsView: View {
     
     var body: some View {
         List {
-            Section("Account") {
+            Section("settings.list.section.title.account") {
                 usernameButton
                     .navigationDestination(isPresented: $showUsernameView) {
                         UsernameView(
@@ -40,11 +40,11 @@ struct SettingsView: View {
                 deleteAccountButton
             }
             
-            Section("App") {
+            Section("settings.list.section.title.app") {
                 signOutButton
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle("settings.toolbar.title")
     }
 }
 
@@ -53,7 +53,7 @@ extension SettingsView {
         Button(
             action: { showUsernameView = true },
             label: {
-                Text("Username")
+                Text("settings.list.buttons.username")
             }
         )
     }
@@ -63,7 +63,7 @@ extension SettingsView {
             role: .destructive,
             action: deleteAccount,
             label: {
-                Text("Delete Account")
+                Text("settings.list.buttons.deleteAccount")
             }
         )
     }
@@ -72,7 +72,7 @@ extension SettingsView {
         Button(
             action: signOut,
             label: {
-                Text("Sign Out")
+                Text("settings.list.buttons.signOut")
             }
         )
     }
