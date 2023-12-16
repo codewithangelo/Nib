@@ -38,10 +38,7 @@ extension AppRootView {
     }
     
     private func onSignInError() {
-        viewModel.toast = Toast(
-            style: .error,
-            message: NSLocalizedString("app.signIn.error", comment: "")
-        )
+        // Silently error, for now
     }
 }
 
