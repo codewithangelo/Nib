@@ -67,10 +67,7 @@ extension UserPoemView {
             do {
                 try await viewModel.loadAuthorName(poem: poem)
             } catch {
-                appRoot.toast = Toast(
-                    style: .error,
-                    message: NSLocalizedString("poem.author.error", comment: "")
-                )
+                // Silently error
             }
         }
     }
