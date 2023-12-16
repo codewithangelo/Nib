@@ -5,6 +5,8 @@
 //  Created by Angelo Austria on 2023-12-10.
 //
 
+import AuthenticationServices
+import GoogleSignIn
 import SwiftUI
 
 struct SignInView: View {
@@ -49,6 +51,8 @@ extension SignInView {
             do {
                 try await viewModel.signInWithApple()
                 self.onSignInCompleted()
+            } catch ASAuthorizationError.canceled {
+                // Silently error
             } catch {
                 self.onSignInError()
             }
@@ -60,6 +64,8 @@ extension SignInView {
             do {
                 try await viewModel.signInWithGoogle()
                 self.onSignInCompleted()
+            } catch GIDSignInError.canceled {
+                // Silently error
             } catch {
                 self.onSignInError()
             }
