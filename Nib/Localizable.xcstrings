@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "app.main.unableToGetCurrentUser" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -44,6 +41,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong. Please try again later."
+          }
+        }
+      }
+    },
+    "feed.emptyState.prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No poems have been posted yet. Be the first to post!"
           }
         }
       }
@@ -451,6 +459,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Or"
+          }
+        }
+      }
+    },
+    "your.poems.emptyState.prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write your first poem."
           }
         }
       }

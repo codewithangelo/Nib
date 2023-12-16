@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PoemFeedView: View {
+    @EnvironmentObject
+    var appMain: AppMainViewModel
+    
     @StateObject
     private var viewModel: PoemFeedViewModel = PoemFeedViewModel()
     
@@ -17,6 +20,9 @@ struct PoemFeedView: View {
                 authorId: nil,
                 onPoemTap: { poem in
                     viewModel.selectedPoem = poem
+                },
+                emptyView: {
+                    goToPublisherPrompt
                 }
             )
             .navigationDestination(item: $viewModel.selectedPoem) { poem in
@@ -48,6 +54,13 @@ extension PoemFeedView {
                 Image(systemName: "ellipsis")
             }
         }
+    }
+    
+    private var goToPublisherPrompt: some View {
+        Button(
+            action: { appMain.tabSelection = .publisher },
+            label: { Text("feed.emptyState.prompt").monospaced() }
+        )
     }
 }
 

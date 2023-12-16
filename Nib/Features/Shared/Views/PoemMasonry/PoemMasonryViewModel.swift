@@ -13,8 +13,9 @@ final class PoemMasonryViewModel: ObservableObject {
     @Published
     var poems: [Poem] = []
     
+    @Published
+    var hasMore: Bool = true
     private var lastDocument: DocumentSnapshot? = nil
-    private var hasMore: Bool = true
     private let limit = 5
     
     private var poemService: PoemServiceProtocol

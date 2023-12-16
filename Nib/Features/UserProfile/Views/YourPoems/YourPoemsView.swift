@@ -20,11 +20,15 @@ struct YourPoemsView: View {
     private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
     
     var body: some View {
+        
         if let currentUser = appMain.currentUser {
             PoemMasonryView(
                 authorId: currentUser.userId,
                 onPoemTap: { poem in
                     viewModel.selectedPoem = poem
+                },
+                emptyView: {
+                    goToPublisherPrompt
                 }
             )
             .navigationDestination(item: $viewModel.selectedPoem) { poem in
@@ -32,7 +36,7 @@ struct YourPoemsView: View {
                     .toolbar(content: poemToolbar)
             }
         } else {
-            ProgressView()
+            EmptyView()
         }
     }
 }
@@ -51,6 +55,13 @@ extension YourPoemsView {
                 Image(systemName: "ellipsis")
             }
         }
+    }
+    
+    private var goToPublisherPrompt: some View {
+        Button(
+            action: { appMain.tabSelection = .publisher },
+            label: { Text("your.poems.emptyState.prompt").monospaced() }
+        )
     }
 }
 
