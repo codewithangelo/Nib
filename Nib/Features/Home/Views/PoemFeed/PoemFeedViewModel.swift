@@ -11,7 +11,4 @@ import Foundation
 final class PoemFeedViewModel: ObservableObject {
     @Published
     var selectedPoem: Poem? = nil
-    
-    @Published
-    var showReportPoemView: Bool = false
 }

@@ -31,10 +31,11 @@ struct AppMainView: View {
                 Text("app.error")
             case .success:
                 TabView(selection: $viewModel.tabSelection) {
-                    PoemFeedView()
+                    HomeView()
                         .tag(AppMainViewModel.Tab.home)
                         .tabItem { Image(systemName: "house") }
                         .environmentObject(appRoot)
+                        .environmentObject(viewModel)
                     
                     DraftView()
                         .tag(AppMainViewModel.Tab.publisher)

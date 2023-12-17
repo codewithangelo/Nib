@@ -24,11 +24,20 @@ final class UserPoemViewModel: ObservableObject {
         case unset
         case loading
         case error(error: String?)
-        case success(author: Username)
+        case success
     }
     
     @Published
     var state: State = .unset
+    
+    @Published
+    var showReportPoemView: Bool = false
+    
+    @Published
+    var showAuthorProfile: Bool = false
+    
+    @Published
+    var author: Username? = nil
     
     private let poemService: PoemServiceProtocol
     
@@ -42,7 +51,8 @@ final class UserPoemViewModel: ObservableObject {
             guard let authorName = try? await poemService.getPoemAuthorName(authorId: poem.authorId) else {
                 throw UserPoemViewModelError.unableToGetPoemAuthor
             }
-            self.state = .success(author: authorName)
+            self.state = .success
+            self.author = authorName
         } catch {
             self.state = .error(error: UserPoemViewModelError.unableToGetPoemAuthor.errorDescription)
             throw UserPoemViewModelError.unableToGetPoemAuthor

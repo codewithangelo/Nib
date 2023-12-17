@@ -17,6 +17,7 @@ struct UserPoemView: View {
     private var viewModel: UserPoemViewModel = UserPoemViewModel(poemService: poemService)
     
     let poem: Poem
+    var hasVisitAuthorMenuButton: Bool = false
     
     var body: some View {
         ScrollView {
@@ -38,15 +39,22 @@ struct UserPoemView: View {
                     Spacer()
                 }
                 .padding()
-            case .success(let author):
+                .toolbar(content: poemToolbarWithNoAuthor)
+            case .success:
                 VStack(alignment: .leading) {
-                    Text(poem.title)
-                        .bold()
-                        .font(.title)
-                    
-                    Text("poem.writtenBy \(author.username)")
-                        .monospaced()
-                        .padding(.bottom)
+                    if let author = viewModel.author, !author.username.isEmpty {
+                        Text(poem.title)
+                            .bold()
+                            .font(.title)
+                        Text("poem.writtenBy \(author.username)")
+                            .monospaced()
+                            .padding(.bottom)
+                    } else {
+                        Text(poem.title)
+                            .bold()
+                            .font(.title)
+                            .padding(.bottom)
+                    }
                     
                     Text(poem.content)
                         .monospaced()
@@ -54,15 +62,68 @@ struct UserPoemView: View {
                     Spacer()
                 }
                 .padding()
+                .toolbar(content: poemToolbarWithAuthor)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .onAppear(perform: loadAuthor)
+        .sheet(isPresented: $viewModel.showReportPoemView) {
+            ReportPoemView(
+                poem: poem,
+                onReportCompleted: hideReportSheet
+            )
+            .presentationDetents([.medium, .large])
+        }
+        .navigationDestination(isPresented: $viewModel.showAuthorProfile) {
+            PoemFeedView(authorId: poem.authorId, hasVisitAuthorMenuButton: false)
+                .if(viewModel.author != nil) { view in
+                    view.navigationTitle("\(viewModel.author!.username) feed.userPoems.toolbar.title")
+                }
+        }
     }
 }
 
 extension UserPoemView {
-    func loadAuthor() {
+    @ToolbarContentBuilder
+    private func poemToolbarWithAuthor() -> some ToolbarContent {
+        ToolbarItem {
+            Menu {
+                if hasVisitAuthorMenuButton {
+                    Button(
+                        action: goToAuthorProfile,
+                        label: { Text("poem.menu.buttons.visitAuthor") }
+                    )
+                }
+                
+                Button(
+                    role: .destructive,
+                    action: showReportSheet,
+                    label: { Text("poem.menu.buttons.report") }
+                )
+            } label: {
+                Image(systemName: "ellipsis")
+            }
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private func poemToolbarWithNoAuthor() -> some ToolbarContent {
+        ToolbarItem {
+            Menu {
+                Button(
+                    role: .destructive,
+                    action: showReportSheet,
+                    label: { Text("poem.menu.buttons.report") }
+                )
+            } label: {
+                Image(systemName: "ellipsis")
+            }
+        }
+    }
+}
+
+extension UserPoemView {
+    private func loadAuthor() {
         Task {
             do {
                 try await viewModel.loadAuthorName(poem: poem)
@@ -70,6 +131,18 @@ extension UserPoemView {
                 // Silently error
             }
         }
+    }
+    
+    private func hideReportSheet() {
+        viewModel.showReportPoemView = false
+    }
+    
+    private func showReportSheet() {
+        viewModel.showReportPoemView = true
+    }
+    
+    private func goToAuthorProfile() {
+        viewModel.showAuthorProfile = true
     }
 }
 

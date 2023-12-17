@@ -8,8 +8,16 @@
 import SwiftUI
 
 extension View {
-
-  func toastView(toast: Binding<Toast?>) -> some View {
-    self.modifier(ToastModifier(toast: toast))
-  }
+    func toastView(toast: Binding<Toast?>) -> some View {
+        self.modifier(ToastModifier(toast: toast))
+    }
+    
+    @ViewBuilder
+    func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }

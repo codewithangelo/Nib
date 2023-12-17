@@ -1,8 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
+    "%@ feed.userPoems.toolbar.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@'s Poems"
+          }
+        }
+      }
     },
     "app.error" : {
       "extractionState" : "manual",
@@ -154,6 +162,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Report"
+          }
+        }
+      }
+    },
+    "poem.menu.buttons.visitAuthor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visit Author"
           }
         }
       }
