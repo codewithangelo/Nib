@@ -10,10 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack {
-            PoemFeedView(
-                authorId: nil,
-                hasVisitAuthorMenuButton: true
-            )
+            PoemFeedView(hasVisitAuthorMenuButton: true)
         }
     }
 }

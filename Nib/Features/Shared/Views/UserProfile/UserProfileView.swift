@@ -1,34 +1,34 @@
 //
-//  PoemFeedView.swift
+//  UserProfileView.swift
 //  Nib
 //
-//  Created by Angelo Austria on 2023-12-11.
+//  Created by Angelo Austria on 2023-12-17.
 //
 
 import SwiftUI
 
-struct PoemFeedView: View {
+struct UserProfileView: View {
     @EnvironmentObject
     var appMain: AppMainViewModel
     
     @StateObject
-    private var viewModel: PoemFeedViewModel = PoemFeedViewModel()
+    private var viewModel: UserProfileViewModel = UserProfileViewModel()
     
-    var hasVisitAuthorMenuButton: Bool = false
+    let authorId: String
     
     var body: some View {
         PoemMasonryView(
-            authorId: nil,
+            authorId: authorId,
             onPoemTap: { poem in
                 viewModel.selectedPoem = poem
             },
             emptyView: {
-                goToPublisherPrompt
+                Text("user.profile.poems.emptyState.prompt").monospaced()
             }
         )
         .navigationDestination(item: $viewModel.selectedPoem) { poem in
             if let currentUser = appMain.currentUser,
-               currentUser.userId == poem.authorId {
+               currentUser.userId == authorId {
                 YourPoemView(
                     poem: poem,
                     onDeleteCompleted: onDeletePoemCompleted
@@ -36,26 +36,19 @@ struct PoemFeedView: View {
             } else {
                 UserPoemView(
                     poem: poem,
-                    hasVisitAuthorMenuButton: hasVisitAuthorMenuButton
+                    hasVisitAuthorMenuButton: false
                 )
             }
         }
     }
 }
 
-extension PoemFeedView {
-    private var goToPublisherPrompt: some View {
-        Button(
-            action: { appMain.tabSelection = .publisher },
-            label: { Text("feed.emptyState.prompt").monospaced() }
-        )
-    }
-    
+extension UserProfileView {
     private func onDeletePoemCompleted() {
         viewModel.selectedPoem = nil
     }
 }
 
 #Preview {
-    PoemFeedView()
+    UserProfileView(authorId: "123")
 }

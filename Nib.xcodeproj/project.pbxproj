@@ -18,6 +18,9 @@
 		873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490B82B292FEA0048CD5D /* RadioButton.swift */; };
 		873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490BB2B293B3C0048CD5D /* PreviewView.swift */; };
 		8767614A2B2E9B7500C20334 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761492B2E9B7500C20334 /* HomeView.swift */; };
+		876761512B2FD60400C20334 /* YourPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761502B2FD60400C20334 /* YourPoemViewModel.swift */; };
+		876761542B2FDBCE00C20334 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761532B2FDBCE00C20334 /* UserProfileViewModel.swift */; };
+		876761562B2FDBD500C20334 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761552B2FDBD500C20334 /* UserProfileView.swift */; };
 		87990D752B2D20C3008A5134 /* PoemFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87990D742B2D20C3008A5134 /* PoemFeedViewModel.swift */; };
 		87A3C1D72B268222002E274D /* NibApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D62B268222002E274D /* NibApp.swift */; };
 		87A3C1D92B268222002E274D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A3C1D82B268222002E274D /* ContentView.swift */; };
@@ -110,6 +113,9 @@
 		873490B82B292FEA0048CD5D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		873490BB2B293B3C0048CD5D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		876761492B2E9B7500C20334 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		876761502B2FD60400C20334 /* YourPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourPoemViewModel.swift; sourceTree = "<group>"; };
+		876761532B2FDBCE00C20334 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		876761552B2FDBD500C20334 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		87990D742B2D20C3008A5134 /* PoemFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemFeedViewModel.swift; sourceTree = "<group>"; };
 		87A3C1D32B268222002E274D /* Nib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A3C1D62B268222002E274D /* NibApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibApp.swift; sourceTree = "<group>"; };
@@ -206,7 +212,10 @@
 		871611642B2BECB1007C2A6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				87CAD9222B281668000AE56D /* ReportPoem */,
+				87FE6D6D2B26C87400E8A785 /* Poem */,
 				871611672B2BECDC007C2A6E /* PoemMasonry */,
+				876761522B2FDBC300C20334 /* UserProfile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +262,15 @@
 				876761492B2E9B7500C20334 /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		876761522B2FDBC300C20334 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				876761532B2FDBCE00C20334 /* UserProfileViewModel.swift */,
+				876761552B2FDBD500C20334 /* UserProfileView.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		87A3C1CA2B268222002E274D = {
@@ -338,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				876761482B2E9B6C00C20334 /* Home */,
-				87CAD9222B281668000AE56D /* ReportPoem */,
 				87CAD91C2B2810B8000AE56D /* PoemFeed */,
 			);
 			path = Views;
@@ -348,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				87CAD91A2B280F91000AE56D /* YourPoemView.swift */,
+				876761502B2FD60400C20334 /* YourPoemViewModel.swift */,
 			);
 			path = YourPoem;
 			sourceTree = "<group>";
@@ -417,7 +435,6 @@
 				87E1B98B2B26887200C2B0EC /* App */,
 				87E1B98A2B26886800C2B0EC /* Authentication */,
 				87CAD9142B280D65000AE56D /* Home */,
-				87FE6D6D2B26C87400E8A785 /* Poem */,
 				87E1B9CC2B26B50900C2B0EC /* Publisher */,
 				87E1B98F2B2688A200C2B0EC /* Shared */,
 				87E1B9B02B26953700C2B0EC /* UserProfile */,
@@ -798,8 +815,11 @@
 				87990D752B2D20C3008A5134 /* PoemFeedViewModel.swift in Sources */,
 				87E1B9A92B268BD900C2B0EC /* NibAuthenticationServiceProtocol.swift in Sources */,
 				87CAD9262B281B8F000AE56D /* ReportedPoem.swift in Sources */,
+				876761512B2FD60400C20334 /* YourPoemViewModel.swift in Sources */,
 				87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */,
+				876761562B2FDBD500C20334 /* UserProfileView.swift in Sources */,
 				871611722B2BF93C007C2A6E /* ToastView.swift in Sources */,
+				876761542B2FDBCE00C20334 /* UserProfileViewModel.swift in Sources */,
 				871611772B2BFA08007C2A6E /* ExtendView.swift in Sources */,
 				871611702B2BF8F8007C2A6E /* Toast.swift in Sources */,
 				87CAD9242B28167D000AE56D /* ReportPoemView.swift in Sources */,

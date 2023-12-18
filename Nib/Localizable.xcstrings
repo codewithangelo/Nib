@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@ feed.userPoems.toolbar.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -503,6 +506,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Or"
+          }
+        }
+      }
+    },
+    "user.profile.poems.emptyState.prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No poems published."
           }
         }
       }

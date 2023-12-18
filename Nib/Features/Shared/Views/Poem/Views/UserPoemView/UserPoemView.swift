@@ -11,6 +11,9 @@ struct UserPoemView: View {
     @EnvironmentObject
     var appRoot: AppRootViewModel
     
+    @EnvironmentObject
+    var appMain: AppMainViewModel
+    
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
@@ -28,14 +31,9 @@ struct UserPoemView: View {
                 ProgressView()
             case .error:
                 VStack(alignment: .leading) {
-                    Text(poem.title)
-                        .bold()
-                        .font(.title)
+                    poemTitle
                         .padding(.bottom)
-                    
-                    Text(poem.content)
-                        .monospaced()
-                    
+                    poemContent
                     Spacer()
                 }
                 .padding()
@@ -43,22 +41,15 @@ struct UserPoemView: View {
             case .success:
                 VStack(alignment: .leading) {
                     if let author = viewModel.author, !author.username.isEmpty {
-                        Text(poem.title)
-                            .bold()
-                            .font(.title)
+                        poemTitle
                         Text("poem.writtenBy \(author.username)")
                             .monospaced()
                             .padding(.bottom)
                     } else {
-                        Text(poem.title)
-                            .bold()
-                            .font(.title)
+                        poemTitle
                             .padding(.bottom)
                     }
-                    
-                    Text(poem.content)
-                        .monospaced()
-                    
+                    poemContent
                     Spacer()
                 }
                 .padding()
@@ -75,11 +66,24 @@ struct UserPoemView: View {
             .presentationDetents([.medium, .large])
         }
         .navigationDestination(isPresented: $viewModel.showAuthorProfile) {
-            PoemFeedView(authorId: poem.authorId, hasVisitAuthorMenuButton: false)
+            UserProfileView(authorId: poem.authorId)
                 .if(viewModel.author != nil) { view in
                     view.navigationTitle("\(viewModel.author!.username) feed.userPoems.toolbar.title")
                 }
         }
+    }
+}
+
+extension UserPoemView {
+    private var poemTitle: some View {
+        Text(poem.title)
+            .bold()
+            .font(.title)
+    }
+    
+    private var poemContent: some View {
+        Text(poem.content)
+            .monospaced()
     }
 }
 

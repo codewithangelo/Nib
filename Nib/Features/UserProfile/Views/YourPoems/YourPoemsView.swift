@@ -17,24 +17,11 @@ struct YourPoemsView: View {
     private static let poemService: PoemServiceProtocol = PoemService()
     
     @StateObject
-    private var viewModel: YourPoemsViewModel = YourPoemsViewModel(poemService: poemService)
+    private var viewModel: YourPoemsViewModel = YourPoemsViewModel()
     
     var body: some View {
-        
         if let currentUser = appMain.currentUser {
-            PoemMasonryView(
-                authorId: currentUser.userId,
-                onPoemTap: { poem in
-                    viewModel.selectedPoem = poem
-                },
-                emptyView: {
-                    goToPublisherPrompt
-                }
-            )
-            .navigationDestination(item: $viewModel.selectedPoem) { poem in
-                YourPoemView(poem: poem)
-                    .toolbar(content: poemToolbar)
-            }
+            UserProfileView(authorId: currentUser.userId)
         } else {
             EmptyView()
         }
@@ -42,41 +29,15 @@ struct YourPoemsView: View {
 }
 
 extension YourPoemsView {
-    @ToolbarContentBuilder
-    private func poemToolbar() -> some ToolbarContent {
-        ToolbarItem {
-            Menu {
-                Button(
-                    role: .destructive,
-                    action: deleteSelectedPoem,
-                    label: { Text("poem.menu.buttons.delete") }
-                )
-            } label: {
-                Image(systemName: "ellipsis")
-            }
-        }
-    }
-    
     private var goToPublisherPrompt: some View {
         Button(
             action: { appMain.tabSelection = .publisher },
             label: { Text("your.poems.emptyState.prompt").monospaced() }
         )
     }
-}
-
-extension YourPoemsView {
-    private func deleteSelectedPoem() {
-        Task {
-            do {
-                try await viewModel.deleteSelectedPoem()
-            } catch {
-                appRoot.toast = Toast(
-                    style: .error,
-                    message: NSLocalizedString("poem.delete.error", comment: "")
-                )
-            }
-        }
+    
+    private func onDeletePoemCompleted() {
+        viewModel.selectedPoem = nil
     }
 }
 
