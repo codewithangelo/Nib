@@ -437,7 +437,7 @@
 				87CAD9142B280D65000AE56D /* Home */,
 				87E1B9CC2B26B50900C2B0EC /* Publisher */,
 				87E1B98F2B2688A200C2B0EC /* Shared */,
-				87E1B9B02B26953700C2B0EC /* UserProfile */,
+				87E1B9B02B26953700C2B0EC /* YourProfile */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -559,12 +559,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		87E1B9B02B26953700C2B0EC /* UserProfile */ = {
+		87E1B9B02B26953700C2B0EC /* YourProfile */ = {
 			isa = PBXGroup;
 			children = (
 				87E1B9B22B26954E00C2B0EC /* Views */,
 			);
-			path = UserProfile;
+			path = YourProfile;
 			sourceTree = "<group>";
 		};
 		87E1B9B12B26954300C2B0EC /* YourProfile */ = {
