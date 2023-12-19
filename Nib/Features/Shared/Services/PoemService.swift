@@ -63,7 +63,7 @@ final class PoemService: PoemServiceProtocol {
         try await poem.delete()
     }
     
-    func getPoems(count: Int, lastDocument: DocumentSnapshot?, authorId: String? = nil) async throws -> (poems: [Poem], lastDocument: DocumentSnapshot?) {
+    func getPoems(count: Int, lastDocument: DocumentSnapshot?, authorId: String? = nil) async throws -> (documents: [Poem], lastDocument: DocumentSnapshot?) {
         var query: Query = getAllPoemsQuery()
         
         if let authorId {
@@ -87,26 +87,5 @@ final class PoemService: PoemServiceProtocol {
     
     func getPoemAuthorName(authorId: String) async throws -> Username? {
         try await usernamesCollection.whereField(Username.CodingKeys.userId.rawValue, isEqualTo: authorId).getDocuments(as: Username.self).first
-    }
-}
-
-extension Query {
-    func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
-        try await getDocumentsWithSnapshot(as: type).poems
-    }
-    
-    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (poems: [T], lastDocument: DocumentSnapshot?) where T : Decodable {
-        let snapshot = try await self.getDocuments()
-        
-        let poems = try snapshot.documents.map({ document in
-            try document.data(as: T.self)
-        })
-        
-        return (poems, snapshot.documents.last)
-    }
-    
-    func startOptionally(afterDocument lastDocument: DocumentSnapshot?) -> Query {
-        guard let lastDocument else { return self }
-        return self.start(afterDocument: lastDocument)
     }
 }
