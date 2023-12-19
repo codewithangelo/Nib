@@ -37,9 +37,9 @@ final class PoemService: PoemServiceProtocol {
         let newPoem = Poem(
             authorId: poem.authorId,
             content: poem.content,
-            createdAt: poem.createdAt,
+            createdAt: Date(),
             id: poemId,
-            modifiedAt: poem.modifiedAt,
+            modifiedAt: Date(),
             title: poem.title
         )
         try getPoemDocument(poemId: poemId).setData(from: newPoem)
