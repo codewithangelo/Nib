@@ -15,6 +15,12 @@
 		871611722B2BF93C007C2A6E /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871611712B2BF93C007C2A6E /* ToastView.swift */; };
 		871611742B2BF9A8007C2A6E /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871611732B2BF9A8007C2A6E /* ToastModifier.swift */; };
 		871611772B2BFA08007C2A6E /* ExtendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871611762B2BFA08007C2A6E /* ExtendView.swift */; };
+		872CCC262B34D61C00C26490 /* ExtendQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC252B34D61C00C26490 /* ExtendQuery.swift */; };
+		872CCC282B34ED2200C26490 /* LikeServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC272B34ED2200C26490 /* LikeServiceProtocol.swift */; };
+		872CCC2A2B34ED3200C26490 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC292B34ED3200C26490 /* LikeService.swift */; };
+		872CCC2D2B34ED5000C26490 /* LikeButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC2C2B34ED5000C26490 /* LikeButtonViewModel.swift */; };
+		872CCC2F2B34ED6000C26490 /* LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC2E2B34ED6000C26490 /* LikeButtonView.swift */; };
+		872CCC322B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */; };
 		873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490B82B292FEA0048CD5D /* RadioButton.swift */; };
 		873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490BB2B293B3C0048CD5D /* PreviewView.swift */; };
 		8767614A2B2E9B7500C20334 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761492B2E9B7500C20334 /* HomeView.swift */; };
@@ -110,6 +116,12 @@
 		871611712B2BF93C007C2A6E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		871611732B2BF9A8007C2A6E /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		871611762B2BFA08007C2A6E /* ExtendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendView.swift; sourceTree = "<group>"; };
+		872CCC252B34D61C00C26490 /* ExtendQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendQuery.swift; sourceTree = "<group>"; };
+		872CCC272B34ED2200C26490 /* LikeServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceProtocol.swift; sourceTree = "<group>"; };
+		872CCC292B34ED3200C26490 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
+		872CCC2C2B34ED5000C26490 /* LikeButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonViewModel.swift; sourceTree = "<group>"; };
+		872CCC2E2B34ED6000C26490 /* LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonView.swift; sourceTree = "<group>"; };
+		872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetPreferenceKey.swift; sourceTree = "<group>"; };
 		873490B82B292FEA0048CD5D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		873490BB2B293B3C0048CD5D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		876761492B2E9B7500C20334 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -244,8 +256,26 @@
 			isa = PBXGroup;
 			children = (
 				871611762B2BFA08007C2A6E /* ExtendView.swift */,
+				872CCC252B34D61C00C26490 /* ExtendQuery.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		872CCC2B2B34ED4400C26490 /* LikeButton */ = {
+			isa = PBXGroup;
+			children = (
+				872CCC2C2B34ED5000C26490 /* LikeButtonViewModel.swift */,
+				872CCC2E2B34ED6000C26490 /* LikeButtonView.swift */,
+			);
+			path = LikeButton;
+			sourceTree = "<group>";
+		};
+		872CCC302B34EE4B00C26490 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		873490BA2B293B2D0048CD5D /* Preview */ = {
@@ -400,6 +430,7 @@
 		87E1B9682B26831B00C2B0EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				872CCC302B34EE4B00C26490 /* App */,
 				87E1B97C2B26850400C2B0EC /* Firebase */,
 				87E1B97B2B2684F300C2B0EC /* IdentityProviders */,
 				87E1B9A72B268BB000C2B0EC /* Protocols */,
@@ -544,6 +575,7 @@
 				87E1B9CA2B26B2D100C2B0EC /* PoemService.swift */,
 				87CAD9292B282044000AE56D /* ReportingService.swift */,
 				87E1B9BA2B269BC200C2B0EC /* UserService.swift */,
+				872CCC292B34ED3200C26490 /* LikeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -555,6 +587,7 @@
 				87E1B9C82B26B26E00C2B0EC /* PoemServiceProtocol.swift */,
 				87E1B9BC2B269BD200C2B0EC /* UserServiceProtocol.swift */,
 				87CAD9272B282009000AE56D /* ReportingServiceProtocol.swift */,
+				872CCC272B34ED2200C26490 /* LikeServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -650,6 +683,7 @@
 		87FE6D6E2B26C88E00E8A785 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				872CCC2B2B34ED4400C26490 /* LikeButton */,
 				87CAD9212B28128C000AE56D /* UserPoemView */,
 				87CAD9172B280F6C000AE56D /* YourPoem */,
 			);
@@ -803,6 +837,7 @@
 			files = (
 				87E1B9CB2B26B2D100C2B0EC /* PoemService.swift in Sources */,
 				8716116E2B2BF8D7007C2A6E /* ToastStyle.swift in Sources */,
+				872CCC2A2B34ED3200C26490 /* LikeService.swift in Sources */,
 				87E1B9B72B26963000C2B0EC /* SettingsView.swift in Sources */,
 				87C28BED2B26BAE6009B2BC8 /* Card.swift in Sources */,
 				87E1B9C92B26B26E00C2B0EC /* PoemServiceProtocol.swift in Sources */,
@@ -815,6 +850,7 @@
 				87990D752B2D20C3008A5134 /* PoemFeedViewModel.swift in Sources */,
 				87E1B9A92B268BD900C2B0EC /* NibAuthenticationServiceProtocol.swift in Sources */,
 				87CAD9262B281B8F000AE56D /* ReportedPoem.swift in Sources */,
+				872CCC2F2B34ED6000C26490 /* LikeButtonView.swift in Sources */,
 				876761512B2FD60400C20334 /* YourPoemViewModel.swift in Sources */,
 				87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */,
 				876761562B2FDBD500C20334 /* UserProfileView.swift in Sources */,
@@ -826,6 +862,7 @@
 				87C28BEF2B26BD51009B2BC8 /* YourPoemsViewModel.swift in Sources */,
 				87C28BE92B26BAB2009B2BC8 /* YourPoemsView.swift in Sources */,
 				87E1B9BB2B269BC200C2B0EC /* UserService.swift in Sources */,
+				872CCC322B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift in Sources */,
 				87FE6D722B26CAEA00E8A785 /* UserPoemViewModel.swift in Sources */,
 				87E1B9C32B26A5D000C2B0EC /* UsernameViewModel.swift in Sources */,
 				87E1B9AD2B268CFD00C2B0EC /* NibAuthenticationService.swift in Sources */,
@@ -834,6 +871,7 @@
 				87A3C1D92B268222002E274D /* ContentView.swift in Sources */,
 				87E2440B2B2C17F3009F361A /* AppMainViewModel.swift in Sources */,
 				87E1B9AB2B268C2100C2B0EC /* AuthProviderOption.swift in Sources */,
+				872CCC2D2B34ED5000C26490 /* LikeButtonViewModel.swift in Sources */,
 				87E1B97E2B26853C00C2B0EC /* AuthDataResult.swift in Sources */,
 				87E1B9C72B26B22500C2B0EC /* Poem.swift in Sources */,
 				87E1B99D2B268A4100C2B0EC /* SignInView.swift in Sources */,
@@ -843,6 +881,7 @@
 				87CAD92C2B282754000AE56D /* ReportPoemViewModel.swift in Sources */,
 				87E1B9AF2B2694B900C2B0EC /* Username.swift in Sources */,
 				87FE6D702B26C89C00E8A785 /* UserPoemView.swift in Sources */,
+				872CCC262B34D61C00C26490 /* ExtendQuery.swift in Sources */,
 				87E1B99B2B2689FE00C2B0EC /* DividerWithLabel.swift in Sources */,
 				873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */,
 				87CAD91E2B2810C7000AE56D /* PoemFeedView.swift in Sources */,
@@ -855,6 +894,7 @@
 				87E1B9C12B26A5B600C2B0EC /* UsernameView.swift in Sources */,
 				87E1B9C52B26AD1900C2B0EC /* UnderlinedTextField.swift in Sources */,
 				87CAD92A2B282044000AE56D /* ReportingService.swift in Sources */,
+				872CCC282B34ED2200C26490 /* LikeServiceProtocol.swift in Sources */,
 				873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */,
 				87E1B9B92B26967500C2B0EC /* SettingsViewModel.swift in Sources */,
 				87C28BEB2B26BABE009B2BC8 /* Masonry.swift in Sources */,

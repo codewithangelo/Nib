@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UserPoemView: View {
+    let poem: Poem
+    var hasVisitAuthorMenuButton: Bool = false
+    
     @EnvironmentObject
     var appRoot: AppRootViewModel
     
@@ -19,57 +22,72 @@ struct UserPoemView: View {
     @StateObject
     private var viewModel: UserPoemViewModel = UserPoemViewModel(poemService: poemService)
     
-    let poem: Poem
-    var hasVisitAuthorMenuButton: Bool = false
+    @State
+    private var scrollPosition: CGPoint = .zero
     
     var body: some View {
-        ScrollView {
-            switch viewModel.state {
-            case .unset:
-                EmptyView()
-            case .loading:
-                ProgressView()
-            case .error:
-                VStack(alignment: .leading) {
-                    poemTitle
-                        .padding(.bottom)
-                    poemContent
-                    Spacer()
-                }
-                .padding()
-                .toolbar(content: poemToolbarWithNoAuthor)
-            case .success:
-                VStack(alignment: .leading) {
-                    if let author = viewModel.author, !author.username.isEmpty {
+        ZStack(alignment: .bottomTrailing) {
+            ScrollView {
+                switch viewModel.state {
+                case .unset:
+                    EmptyView()
+                case .loading:
+                    ProgressView()
+                case .error:
+                    VStack(alignment: .leading) {
                         poemTitle
-                        Text("poem.writtenBy \(author.username)")
+                            .padding(.bottom)
+                        poemContent
+                        Spacer()
+                    }
+                    .padding()
+                    .toolbar(content: poemToolbarWithNoAuthor)
+                    .background(GeometryReader { geometry in
+                        Color.clear
+                            .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
+                    })
+                    .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                        withAnimation(.easeInOut(duration: 1.0)) {
+                            scrollPosition = value
+                        }
+                    }
+                case .success(let authorName):
+                    VStack(alignment: .leading) {
+                        poemTitle
+                        Text("poem.writtenBy \(authorName.username)")
                             .monospaced()
                             .padding(.bottom)
-                    } else {
-                        poemTitle
-                            .padding(.bottom)
+                        poemContent
+                        Spacer()
                     }
-                    poemContent
-                    Spacer()
+                    .padding()
+                    .toolbar(content: poemToolbarWithAuthor)
+                    .background(GeometryReader { geometry in
+                        Color.clear
+                            .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
+                    })
+                    .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                        withAnimation(.easeInOut(duration: 1.0)) {
+                            scrollPosition = value
+                        }
+                    }
                 }
-                .padding()
-                .toolbar(content: poemToolbarWithAuthor)
+                
             }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .onAppear(perform: loadAuthor)
-        .sheet(isPresented: $viewModel.showReportPoemView) {
-            ReportPoemView(
-                poem: poem,
-                onReportCompleted: hideReportSheet
-            )
-            .presentationDetents([.medium, .large])
-        }
-        .navigationDestination(isPresented: $viewModel.showAuthorProfile) {
-            UserProfileView(authorId: poem.authorId)
-                .if(viewModel.author != nil) { view in
-                    view.navigationTitle("\(viewModel.author!.username) feed.userPoems.toolbar.title")
-                }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .onAppear(perform: loadAuthor)
+            .sheet(isPresented: $viewModel.showReportPoemView) {
+                ReportPoemView(poem: poem, onReportCompleted: hideReportSheet)
+                    .presentationDetents([.medium, .large])
+            }
+            .navigationDestination(isPresented: $viewModel.showAuthorProfile) {
+                UserProfileView(authorId: poem.authorId)
+            }
+            .coordinateSpace(name: "scroll")
+            
+            LikeButtonView(poem: poem)
+                .opacity(scrollPosition.y > 0 ? 1 : 0)
+                .padding([.bottom, .trailing], 12)
         }
     }
 }

@@ -14,6 +14,7 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
     let id: String?
     let modifiedAt: Date?
     let title: String
+    let likeCount: Int?
     
     init(
         authorId: String,
@@ -21,7 +22,8 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
         createdAt: Date? = nil,
         id: String? = nil,
         modifiedAt: Date? = nil,
-        title: String
+        title: String,
+        likeCount: Int? = nil
     ) {
         self.authorId = authorId
         self.content = content
@@ -29,6 +31,7 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
         self.id = id
         self.modifiedAt = modifiedAt
         self.title = title
+        self.likeCount = likeCount
     }
     
     enum CodingKeys: String, CodingKey {
@@ -38,6 +41,7 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
         case id = "id"
         case modifiedAt = "modified_at"
         case title = "title"
+        case likeCount = "like_count"
     }
     
     init(from decoder: Decoder) throws {
@@ -48,6 +52,7 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
         self.id = try container.decode(String.self, forKey: .id)
         self.modifiedAt = try container.decodeIfPresent(Date.self, forKey: .modifiedAt)
         self.title = try container.decode(String.self, forKey: .title)
+        self.likeCount = try container.decodeIfPresent(Int.self, forKey: .likeCount)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -58,6 +63,7 @@ struct Poem: Identifiable, Codable, Equatable, Hashable {
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.modifiedAt, forKey: .modifiedAt)
         try container.encode(self.title, forKey: .title)
+        try container.encodeIfPresent(self.likeCount, forKey: .likeCount)
     }
     
     static func ==(lhs: Poem, rhs: Poem) -> Bool {

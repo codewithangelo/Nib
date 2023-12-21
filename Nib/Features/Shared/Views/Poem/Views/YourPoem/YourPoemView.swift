@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct YourPoemView: View {
+    let poem: Poem
+    var onDeleteCompleted: (() -> Void)? = nil
+    
     @EnvironmentObject
     var appRoot: AppRootViewModel
     
@@ -19,37 +22,53 @@ struct YourPoemView: View {
     @StateObject
     private var viewModel: YourPoemViewModel = YourPoemViewModel(poemService: poemService)
     
-    let poem: Poem
-    var onDeleteCompleted: (() -> Void)? = nil
+    @State
+    private var scrollPosition: CGPoint = .zero
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                if let currentUser = appMain.currentUser,
-                   let displayName = currentUser.displayName, !displayName.isEmpty {
-                    Text(poem.title)
-                        .bold()
-                        .font(.title)
+        ZStack(alignment: .bottomTrailing) {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    if let currentUser = appMain.currentUser,
+                       let displayName = currentUser.displayName, !displayName.isEmpty {
+                        Text(poem.title)
+                            .bold()
+                            .font(.title)
+                        
+                        Text("poem.writtenBy \(displayName)")
+                            .monospaced()
+                            .padding(.bottom)
+                    } else {
+                        Text(poem.title)
+                            .bold()
+                            .font(.title)
+                            .padding(.bottom)
+                    }
                     
-                    Text("poem.writtenBy \(displayName)")
+                    Text(poem.content)
                         .monospaced()
-                        .padding(.bottom)
-                } else {
-                    Text(poem.title)
-                        .bold()
-                        .font(.title)
-                        .padding(.bottom)
+                    
+                    Spacer()
                 }
-                
-                Text(poem.content)
-                    .monospaced()
-                
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
+                })
+                .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        scrollPosition = value
+                    }
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+            .toolbar(content: poemToolbar)
+            .coordinateSpace(name: "scroll")
+            
+            LikeButtonView(poem: poem)
+                .opacity(scrollPosition.y > 0 ? 1 : 0)
+                .padding([.bottom, .trailing], 12)
         }
-        .toolbar(content: poemToolbar)
     }
 }
 

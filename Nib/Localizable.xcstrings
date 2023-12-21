@@ -15,6 +15,9 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "app.error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -147,6 +150,9 @@
         }
       }
     },
+    "poem.like.error" : {
+
+    },
     "poem.menu.buttons.delete" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -223,6 +229,9 @@
           }
         }
       }
+    },
+    "poem.unlike.error" : {
+
     },
     "poem.writtenBy %@" : {
       "extractionState" : "manual",
