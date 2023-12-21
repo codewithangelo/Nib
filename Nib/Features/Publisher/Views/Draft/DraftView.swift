@@ -55,6 +55,9 @@ struct DraftView: View {
                     )
                     .focused($focusedField, equals: .contentField)
                 }
+                .onTapGesture {
+                    focusedField = .contentField
+                }
                 .monospaced()
                 .autocorrectionDisabled()
                 
