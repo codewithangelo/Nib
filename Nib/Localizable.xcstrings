@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "%@ feed.userPoems.toolbar.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14,9 +11,6 @@
           }
         }
       }
-    },
-    "%lld" : {
-
     },
     "app.error" : {
       "extractionState" : "manual",
@@ -151,7 +145,14 @@
       }
     },
     "poem.like.error" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with liking this poem. Please try again later."
+          }
+        }
+      }
     },
     "poem.menu.buttons.delete" : {
       "extractionState" : "manual",
@@ -231,7 +232,14 @@
       }
     },
     "poem.unlike.error" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with unliking this poem. Please try again later."
+          }
+        }
+      }
     },
     "poem.writtenBy %@" : {
       "extractionState" : "manual",
