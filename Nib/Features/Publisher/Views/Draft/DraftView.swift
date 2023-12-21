@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct DraftView: View {
+    enum Field: Hashable {
+        case titleField
+        case contentField
+    }
+    
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
     
@@ -21,6 +26,9 @@ struct DraftView: View {
     
     @StateObject
     private var viewModel: DraftViewModel = DraftViewModel(poemService: poemService)
+    
+    @FocusState
+    private var focusedField: Field?
     
     var body: some View {
         NavigationStack {
@@ -45,11 +53,14 @@ struct DraftView: View {
                         text: $viewModel.content,
                         axis: .vertical
                     )
+                    .focused($focusedField, equals: .contentField)
                 }
                 .monospaced()
                 .autocorrectionDisabled()
+                
                 Spacer()
             }
+            .onAppear(perform: focusTextFieldOnAppear)
             .padding()
             .toolbar(content: draftToolbar)
         }
@@ -76,6 +87,14 @@ extension DraftView {
 }
 
 extension DraftView {
+    private func focusTextFieldOnAppear() {
+        let task = DispatchWorkItem {
+            focusedField = .contentField
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: task)
+    }
+    
     private func publishPoem() {
         guard let author = appMain.currentUser else {
             appRoot.toast = Toast(
