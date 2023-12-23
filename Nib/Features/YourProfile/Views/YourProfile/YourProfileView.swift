@@ -47,11 +47,11 @@ struct YourProfileView: View {
                     switch(value.translation.width, value.translation.height) {
                     case (...0, -30...30):
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            tabSelection = .yourPoems
+                            tabSelection = .favoritePoems
                         }
                     case (0..., -30...30):
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            tabSelection = .favoritePoems
+                            tabSelection = .yourPoems
                         }
                     case (-100...100, ...0):
                         break
@@ -70,8 +70,8 @@ extension YourProfileView {
     private var tabUnderline: some View {
         Capsule()
             .fill(.blue)
-            .frame(height: 1)
-            .offset(y: 8)
+            .frame(height: 2)
+            .offset(y: 11)
             .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
     }
     
@@ -83,11 +83,12 @@ extension YourProfileView {
                 }
             },
             label: {
-                Image(systemName: "square.grid.2x2.fill")
-                    .frame(width: 32, height: 32)
+                Text("user.profile.your.poems.tab")
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .padding(.horizontal)
             }
         )
-        .padding(.bottom, 0)
         .foregroundColor(tabSelection == .yourPoems ? .blue : .gray)
         .frame(maxWidth: .infinity)
         .background(alignment: .bottom) {
@@ -105,11 +106,12 @@ extension YourProfileView {
                 }
             },
             label: {
-                Image(systemName: "bookmark.fill")
-                    .frame(width: 32, height: 32)
+                Text("user.profile.favorites.tab")
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .padding(.horizontal)
             }
         )
-        .padding(.bottom, 0)
         .foregroundColor(tabSelection == .favoritePoems ? .blue : .gray)
         .frame(maxWidth: .infinity)
         .background(alignment: .bottom) {

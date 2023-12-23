@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
     "%@ feed.userPoems.toolbar.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -560,6 +566,17 @@
         }
       }
     },
+    "user.profile.favorites.tab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        }
+      }
+    },
     "user.profile.poems.emptyState.prompt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -567,6 +584,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No poems published."
+          }
+        }
+      }
+    },
+    "user.profile.your.poems.tab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Poems"
           }
         }
       }
