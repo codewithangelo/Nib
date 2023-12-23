@@ -23,45 +23,49 @@ struct YourFavoritesView: View {
     private var viewModel: YourFavoritesViewModel = YourFavoritesViewModel(favoritePoemService: favoritePoemService)
     
     var body: some View {
-        if !viewModel.hasMore, viewModel.poems.isEmpty {
-            Text("favorites.emptyState")
-                .monospaced()
-            Spacer()
-        } else {
-            ScrollView {
-                Masonry(
-                    gridItems: $viewModel.poems,
-                    numOfColumns: 2,
-                    itemContent: { poem in
-                        Card(title: poem.title, content: poem.content)
-                            .frame(
-                                minHeight: minCardHeight,
-                                idealHeight: getPoemCardHeight(poem: poem),
-                                maxHeight: maxCardHeight
-                            )
-                            .onTapGesture { viewModel.selectedPoem = poem }
-                    },
-                    loadMore: loadPoems,
-                    getHeight: getPoemCardHeight
-                )
-            }
-            .onAppear(perform: refreshPoems)
-            .refreshable { refreshPoems() }
-            .navigationDestination(item: $viewModel.selectedPoem) { poem in
-                if let currentUser = appMain.currentUser,
-                   currentUser.userId == poem.authorId {
-                    YourPoemView(
-                        poem: poem,
-                        onDeleteCompleted: { viewModel.selectedPoem = nil }
+        VStack {
+            if !viewModel.hasMore, viewModel.poems.isEmpty {
+                VStack {
+                    Spacer()
+                    Text("favorites.emptyState").monospaced()
+                    Spacer()
+                }
+            } else {
+                ScrollView {
+                    Masonry(
+                        gridItems: $viewModel.poems,
+                        numOfColumns: 2,
+                        itemContent: { poem in
+                            Card(title: poem.title, content: poem.content)
+                                .frame(
+                                    minHeight: minCardHeight,
+                                    idealHeight: getPoemCardHeight(poem: poem),
+                                    maxHeight: maxCardHeight
+                                )
+                                .onTapGesture { viewModel.selectedPoem = poem }
+                        },
+                        loadMore: loadPoems,
+                        getHeight: getPoemCardHeight
                     )
-                } else {
-                    UserPoemView(
-                        poem: poem,
-                        hasVisitAuthorMenuButton: true
-                    )
+                }
+                .navigationDestination(item: $viewModel.selectedPoem) { poem in
+                    if let currentUser = appMain.currentUser,
+                       currentUser.userId == poem.authorId {
+                        YourPoemView(
+                            poem: poem,
+                            onDeleteCompleted: { viewModel.selectedPoem = nil }
+                        )
+                    } else {
+                        UserPoemView(
+                            poem: poem,
+                            hasVisitAuthorMenuButton: true
+                        )
+                    }
                 }
             }
         }
+        .onAppear(perform: refreshPoems)
+        .refreshable { refreshPoems() }
     }
 }
 

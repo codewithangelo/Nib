@@ -49,6 +49,7 @@ extension PoemFeedView {
             action: { appMain.tabSelection = .publisher },
             label: { Text("feed.emptyState.prompt").monospaced() }
         )
+        .padding(.horizontal)
     }
     
     private func onDeletePoemCompleted() {
