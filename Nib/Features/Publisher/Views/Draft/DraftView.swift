@@ -38,9 +38,11 @@ struct DraftView: View {
                     text: $viewModel.title,
                     axis: .vertical
                 )
+                .focused($focusedField, equals: .titleField)
                 .bold()
                 .font(.title)
                 .autocorrectionDisabled()
+                .toolbar(content: keyboardToolbar)
                 
                 ZStack(alignment: .topLeading) {
                     if viewModel.content.isEmpty {
@@ -85,6 +87,20 @@ extension DraftView {
                 label: { Text("poem.draft.toolbar.buttons.next") }
             )
             .disabled(!viewModel.isValid)
+        }
+    }
+    
+    @ToolbarContentBuilder
+    func keyboardToolbar() -> some ToolbarContent {
+        ToolbarItem(placement: .keyboard) {
+            Button(
+                action: { focusedField = nil },
+                label: {
+                    Text("keyboard.toolbar.buttons.done")
+                        .font(.none)
+                        .fontWeight(.regular)
+                }
+            )
         }
     }
 }

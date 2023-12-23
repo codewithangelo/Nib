@@ -95,6 +95,17 @@
         }
       }
     },
+    "keyboard.toolbar.buttons.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
     "masonry.loadPoems.error" : {
       "extractionState" : "manual",
       "localizations" : {
