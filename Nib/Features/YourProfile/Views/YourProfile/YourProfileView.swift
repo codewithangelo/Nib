@@ -42,6 +42,27 @@ struct YourProfileView: View {
             .navigationDestination(isPresented: $showSettingsView) {
                 SettingsView()
             }
+            .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+                .onEnded { value in
+                    print(value.translation)
+                    switch(value.translation.width, value.translation.height) {
+                    case (...0, -30...30):
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            tabSelection = .yourPoems
+                        }
+                    case (0..., -30...30):
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            tabSelection = .favoritePoems
+                        }
+                    case (-100...100, ...0):
+                        break
+                    case (-100...100, 0...):
+                        break
+                    default:
+                        break
+                    }
+                }
+            )
         }
     }
 }
