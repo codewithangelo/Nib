@@ -25,6 +25,7 @@ struct PoemMasonryView<Content: View>: View {
         VStack {
             if !viewModel.hasMore && viewModel.poems.isEmpty {
                 emptyView()
+                Spacer()
             } else {
                 ScrollView {
                     Masonry(

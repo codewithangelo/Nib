@@ -67,6 +67,17 @@
         }
       }
     },
+    "favorites.emptyState" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No poems have been added to your favorites yet."
+          }
+        }
+      }
+    },
     "feed.emptyState.prompt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -140,6 +151,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        }
+      }
+    },
+    "poem.favorite.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with adding this poem to your favorites. Please try again later."
           }
         }
       }
@@ -227,6 +249,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your poem was published!"
+          }
+        }
+      }
+    },
+    "poem.unfavorite.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with removing this poem from your favorites. Please try again later."
           }
         }
       }

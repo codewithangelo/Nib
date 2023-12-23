@@ -21,6 +21,15 @@
 		872CCC2D2B34ED5000C26490 /* LikeButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC2C2B34ED5000C26490 /* LikeButtonViewModel.swift */; };
 		872CCC2F2B34ED6000C26490 /* LikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC2E2B34ED6000C26490 /* LikeButtonView.swift */; };
 		872CCC322B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */; };
+		872CCC342B34F3EB00C26490 /* FavoritePoemServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC332B34F3EB00C26490 /* FavoritePoemServiceProtocol.swift */; };
+		872CCC362B34F48500C26490 /* FavoritePoemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC352B34F48500C26490 /* FavoritePoemService.swift */; };
+		872CCC392B34F63300C26490 /* FavoriteButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC382B34F63300C26490 /* FavoriteButtonViewModel.swift */; };
+		872CCC3D2B34F73000C26490 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC3C2B34F73000C26490 /* FavoriteButtonView.swift */; };
+		872CCC402B34F88800C26490 /* FloatingActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC3F2B34F88800C26490 /* FloatingActionButtonView.swift */; };
+		872CCC432B3508CB00C26490 /* YourFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC422B3508CB00C26490 /* YourFavoritesViewModel.swift */; };
+		872CCC452B35095D00C26490 /* YourFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC442B35095D00C26490 /* YourFavoritesView.swift */; };
+		872CCC472B362C9200C26490 /* ExtendInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC462B362C9200C26490 /* ExtendInt.swift */; };
+		872CCC492B365B7500C26490 /* FavoritePoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872CCC482B365B7500C26490 /* FavoritePoem.swift */; };
 		873490B92B292FEA0048CD5D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490B82B292FEA0048CD5D /* RadioButton.swift */; };
 		873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873490BB2B293B3C0048CD5D /* PreviewView.swift */; };
 		8767614A2B2E9B7500C20334 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876761492B2E9B7500C20334 /* HomeView.swift */; };
@@ -122,6 +131,15 @@
 		872CCC2C2B34ED5000C26490 /* LikeButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonViewModel.swift; sourceTree = "<group>"; };
 		872CCC2E2B34ED6000C26490 /* LikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonView.swift; sourceTree = "<group>"; };
 		872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetPreferenceKey.swift; sourceTree = "<group>"; };
+		872CCC332B34F3EB00C26490 /* FavoritePoemServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePoemServiceProtocol.swift; sourceTree = "<group>"; };
+		872CCC352B34F48500C26490 /* FavoritePoemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePoemService.swift; sourceTree = "<group>"; };
+		872CCC382B34F63300C26490 /* FavoriteButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonViewModel.swift; sourceTree = "<group>"; };
+		872CCC3C2B34F73000C26490 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
+		872CCC3F2B34F88800C26490 /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
+		872CCC422B3508CB00C26490 /* YourFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourFavoritesViewModel.swift; sourceTree = "<group>"; };
+		872CCC442B35095D00C26490 /* YourFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourFavoritesView.swift; sourceTree = "<group>"; };
+		872CCC462B362C9200C26490 /* ExtendInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendInt.swift; sourceTree = "<group>"; };
+		872CCC482B365B7500C26490 /* FavoritePoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePoem.swift; sourceTree = "<group>"; };
 		873490B82B292FEA0048CD5D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		873490BB2B293B3C0048CD5D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		876761492B2E9B7500C20334 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -257,6 +275,7 @@
 			children = (
 				871611762B2BFA08007C2A6E /* ExtendView.swift */,
 				872CCC252B34D61C00C26490 /* ExtendQuery.swift */,
+				872CCC462B362C9200C26490 /* ExtendInt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,6 +295,32 @@
 				872CCC312B34EE5D00C26490 /* ScrollOffsetPreferenceKey.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		872CCC372B34F62500C26490 /* FavoriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				872CCC382B34F63300C26490 /* FavoriteButtonViewModel.swift */,
+				872CCC3C2B34F73000C26490 /* FavoriteButtonView.swift */,
+			);
+			path = FavoriteButton;
+			sourceTree = "<group>";
+		};
+		872CCC3E2B34F87500C26490 /* FloatingActionButton */ = {
+			isa = PBXGroup;
+			children = (
+				872CCC3F2B34F88800C26490 /* FloatingActionButtonView.swift */,
+			);
+			path = FloatingActionButton;
+			sourceTree = "<group>";
+		};
+		872CCC412B3508B800C26490 /* YourFavorites */ = {
+			isa = PBXGroup;
+			children = (
+				872CCC422B3508CB00C26490 /* YourFavoritesViewModel.swift */,
+				872CCC442B35095D00C26490 /* YourFavoritesView.swift */,
+			);
+			path = YourFavorites;
 			sourceTree = "<group>";
 		};
 		873490BA2B293B2D0048CD5D /* Preview */ = {
@@ -456,6 +501,7 @@
 				87CAD9252B281B8F000AE56D /* ReportedPoem.swift */,
 				87E1B9692B26832A00C2B0EC /* User.swift */,
 				87E1B9AE2B2694B900C2B0EC /* Username.swift */,
+				872CCC482B365B7500C26490 /* FavoritePoem.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -576,6 +622,7 @@
 				87CAD9292B282044000AE56D /* ReportingService.swift */,
 				87E1B9BA2B269BC200C2B0EC /* UserService.swift */,
 				872CCC292B34ED3200C26490 /* LikeService.swift */,
+				872CCC352B34F48500C26490 /* FavoritePoemService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -584,6 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				87E1B9A82B268BD900C2B0EC /* NibAuthenticationServiceProtocol.swift */,
+				872CCC332B34F3EB00C26490 /* FavoritePoemServiceProtocol.swift */,
 				87E1B9C82B26B26E00C2B0EC /* PoemServiceProtocol.swift */,
 				87E1B9BC2B269BD200C2B0EC /* UserServiceProtocol.swift */,
 				87CAD9272B282009000AE56D /* ReportingServiceProtocol.swift */,
@@ -611,6 +659,7 @@
 		87E1B9B22B26954E00C2B0EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				872CCC412B3508B800C26490 /* YourFavorites */,
 				87E1B9B52B26962400C2B0EC /* Settings */,
 				87C28BE62B26B98F009B2BC8 /* YourPoems */,
 				87E1B9B12B26954300C2B0EC /* YourProfile */,
@@ -683,6 +732,8 @@
 		87FE6D6E2B26C88E00E8A785 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				872CCC3E2B34F87500C26490 /* FloatingActionButton */,
+				872CCC372B34F62500C26490 /* FavoriteButton */,
 				872CCC2B2B34ED4400C26490 /* LikeButton */,
 				87CAD9212B28128C000AE56D /* UserPoemView */,
 				87CAD9172B280F6C000AE56D /* YourPoem */,
@@ -839,11 +890,13 @@
 				8716116E2B2BF8D7007C2A6E /* ToastStyle.swift in Sources */,
 				872CCC2A2B34ED3200C26490 /* LikeService.swift in Sources */,
 				87E1B9B72B26963000C2B0EC /* SettingsView.swift in Sources */,
+				872CCC342B34F3EB00C26490 /* FavoritePoemServiceProtocol.swift in Sources */,
 				87C28BED2B26BAE6009B2BC8 /* Card.swift in Sources */,
 				87E1B9C92B26B26E00C2B0EC /* PoemServiceProtocol.swift in Sources */,
 				87CAD91B2B280F91000AE56D /* YourPoemView.swift in Sources */,
 				87E1B9982B2689CD00C2B0EC /* SignInWithAppleButton.swift in Sources */,
 				8767614A2B2E9B7500C20334 /* HomeView.swift in Sources */,
+				872CCC492B365B7500C26490 /* FavoritePoem.swift in Sources */,
 				87E1B9942B26890400C2B0EC /* SignInWithGoogleHelper.swift in Sources */,
 				87E1B96A2B26832A00C2B0EC /* User.swift in Sources */,
 				87E1B9B42B26956400C2B0EC /* YourProfileView.swift in Sources */,
@@ -852,6 +905,7 @@
 				87CAD9262B281B8F000AE56D /* ReportedPoem.swift in Sources */,
 				872CCC2F2B34ED6000C26490 /* LikeButtonView.swift in Sources */,
 				876761512B2FD60400C20334 /* YourPoemViewModel.swift in Sources */,
+				872CCC402B34F88800C26490 /* FloatingActionButtonView.swift in Sources */,
 				87E1B9822B26862600C2B0EC /* AppleSignInResult.swift in Sources */,
 				876761562B2FDBD500C20334 /* UserProfileView.swift in Sources */,
 				871611722B2BF93C007C2A6E /* ToastView.swift in Sources */,
@@ -873,6 +927,7 @@
 				87E1B9AB2B268C2100C2B0EC /* AuthProviderOption.swift in Sources */,
 				872CCC2D2B34ED5000C26490 /* LikeButtonViewModel.swift in Sources */,
 				87E1B97E2B26853C00C2B0EC /* AuthDataResult.swift in Sources */,
+				872CCC472B362C9200C26490 /* ExtendInt.swift in Sources */,
 				87E1B9C72B26B22500C2B0EC /* Poem.swift in Sources */,
 				87E1B99D2B268A4100C2B0EC /* SignInView.swift in Sources */,
 				87E1B9D02B26B54400C2B0EC /* DraftView.swift in Sources */,
@@ -880,6 +935,7 @@
 				871611742B2BF9A8007C2A6E /* ToastModifier.swift in Sources */,
 				87CAD92C2B282754000AE56D /* ReportPoemViewModel.swift in Sources */,
 				87E1B9AF2B2694B900C2B0EC /* Username.swift in Sources */,
+				872CCC392B34F63300C26490 /* FavoriteButtonViewModel.swift in Sources */,
 				87FE6D702B26C89C00E8A785 /* UserPoemView.swift in Sources */,
 				872CCC262B34D61C00C26490 /* ExtendQuery.swift in Sources */,
 				87E1B99B2B2689FE00C2B0EC /* DividerWithLabel.swift in Sources */,
@@ -887,19 +943,23 @@
 				87CAD91E2B2810C7000AE56D /* PoemFeedView.swift in Sources */,
 				87E1B9962B2689B600C2B0EC /* SignInWithGoogleButton.swift in Sources */,
 				871611662B2BECD5007C2A6E /* PoemMasonryView.swift in Sources */,
+				872CCC452B35095D00C26490 /* YourFavoritesView.swift in Sources */,
 				87E1B9A12B268AF100C2B0EC /* AppRootView.swift in Sources */,
 				87E1B9922B2688CB00C2B0EC /* SignInWithAppleHelper.swift in Sources */,
 				87E1B9802B2685DD00C2B0EC /* GoogleSignInResult.swift in Sources */,
 				87E2440D2B2C1829009F361A /* AppMainView.swift in Sources */,
+				872CCC362B34F48500C26490 /* FavoritePoemService.swift in Sources */,
 				87E1B9C12B26A5B600C2B0EC /* UsernameView.swift in Sources */,
 				87E1B9C52B26AD1900C2B0EC /* UnderlinedTextField.swift in Sources */,
 				87CAD92A2B282044000AE56D /* ReportingService.swift in Sources */,
 				872CCC282B34ED2200C26490 /* LikeServiceProtocol.swift in Sources */,
 				873490BC2B293B3C0048CD5D /* PreviewView.swift in Sources */,
+				872CCC432B3508CB00C26490 /* YourFavoritesViewModel.swift in Sources */,
 				87E1B9B92B26967500C2B0EC /* SettingsViewModel.swift in Sources */,
 				87C28BEB2B26BABE009B2BC8 /* Masonry.swift in Sources */,
 				87A3C1D72B268222002E274D /* NibApp.swift in Sources */,
 				87CAD9282B282009000AE56D /* ReportingServiceProtocol.swift in Sources */,
+				872CCC3D2B34F73000C26490 /* FavoriteButtonView.swift in Sources */,
 				87E1B9A52B268B9400C2B0EC /* SignInViewModel.swift in Sources */,
 				871611692B2BECFB007C2A6E /* PoemMasonryViewModel.swift in Sources */,
 			);

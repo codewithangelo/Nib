@@ -28,15 +28,10 @@ struct LikeButtonView: View {
                 label: { Image(systemName: viewModel.liked ? "heart.fill" : "heart") }
             )
             .onAppear(perform: loadHasUserLikedPoem)
-            Text("\(viewModel.likeCount)")
+            Text("\(viewModel.likeCount.formatUsingAbbrevation())")
                 .font(.footnote)
                 .onAppear(perform: loadPoemLikeCount)
         }
-        .padding()
-        .background(Color(UIColor.systemGray6))
-        .clipShape(Circle())
-        .shadow(radius: 4, x: 0, y: 4)
-        
     }
 }
 

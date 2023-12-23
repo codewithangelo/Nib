@@ -85,7 +85,7 @@ struct UserPoemView: View {
             }
             .coordinateSpace(name: "scroll")
             
-            LikeButtonView(poem: poem)
+            FloatingActionButtonView(poem: poem)
                 .opacity(scrollPosition.y > 0 ? 1 : 0)
                 .padding([.bottom, .trailing], 12)
         }

@@ -22,6 +22,7 @@ final class PoemService: PoemServiceProtocol {
     
     private let poemsCollection = Firestore.firestore().collection("poems")
     private let usernamesCollection = Firestore.firestore().collection("usernames")
+    private let favoritesCollection = Firestore.firestore().collection("favorites")
     
     private func getPoemDocument(poemId: String) -> DocumentReference {
         poemsCollection.document(poemId)
@@ -59,8 +60,21 @@ final class PoemService: PoemServiceProtocol {
     }
     
     func deletePoem(poemId: String) async throws {
-        let poem = getPoemDocument(poemId: poemId)
-        try await poem.delete()
+        let favoritePoemDocs = try await favoritesCollection
+            .whereField(FavoritePoem.CodingKeys.poemId.rawValue, isEqualTo: poemId)
+            .getDocuments()
+        
+        let batch = Firestore.firestore().batch()
+        
+        let poemDocRef = getPoemDocument(poemId: poemId)
+        
+        batch.deleteDocument(poemDocRef)
+        
+        for favoritePoemDoc in favoritePoemDocs.documents {
+            batch.deleteDocument(favoritePoemDoc.reference)
+        }
+        
+        try await batch.commit()
     }
     
     func getPoems(count: Int, lastDocument: DocumentSnapshot?, authorId: String? = nil) async throws -> (documents: [Poem], lastDocument: DocumentSnapshot?) {

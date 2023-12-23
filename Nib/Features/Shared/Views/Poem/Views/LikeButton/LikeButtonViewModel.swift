@@ -8,21 +8,7 @@
 import Foundation
 
 @MainActor
-final class LikeButtonViewModel: ObservableObject {
-    enum LikeButtonViewModelError: LocalizedError {
-        case unableToLikePoem
-        case unableToUnlikePoem
-        
-        var errorDescription: String? {
-            switch self {
-            case .unableToLikePoem:
-                return NSLocalizedString("poem.like.error", comment: "")
-            case .unableToUnlikePoem:
-                return NSLocalizedString("poem.unlike.error", comment: "")
-            }
-        }
-    }
-    
+final class LikeButtonViewModel: ObservableObject {    
     @Published
     var liked: Bool = false
     
