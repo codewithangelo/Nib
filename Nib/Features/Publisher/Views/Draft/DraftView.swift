@@ -30,44 +30,72 @@ struct DraftView: View {
     @FocusState
     private var focusedField: Field?
     
+    @State
+    private var showDismissKeyboard: Bool = false
+    
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading) {
-                TextField(
-                    NSLocalizedString("poem.draft.title.placeholder", comment: ""),
-                    text: $viewModel.title,
-                    axis: .vertical
-                )
-                .focused($focusedField, equals: .titleField)
-                .bold()
-                .font(.title)
-                .autocorrectionDisabled()
-                .toolbar(content: keyboardToolbar)
-                
-                ZStack(alignment: .topLeading) {
-                    if viewModel.content.isEmpty {
-                        Text("poem.draft.content.placeholder")
-                            .foregroundStyle(Color.gray.opacity(0.6))
-                    }
-                    
+        ZStack(alignment: .bottomTrailing) {
+            NavigationView {
+                VStack(alignment: .leading) {
                     TextField(
-                        "",
-                        text: $viewModel.content,
+                        NSLocalizedString("poem.draft.title.placeholder", comment: ""),
+                        text: $viewModel.title,
                         axis: .vertical
                     )
-                    .focused($focusedField, equals: .contentField)
+                    .bold()
+                    .font(.title)
+                    .autocorrectionDisabled()
+                    .focused($focusedField, equals: .titleField)
+                    
+                    ZStack(alignment: .topLeading) {
+                        if viewModel.content.isEmpty {
+                            Text("poem.draft.content.placeholder")
+                                .foregroundStyle(Color.gray.opacity(0.6))
+                        }
+                        
+                        TextField(
+                            "",
+                            text: $viewModel.content,
+                            axis: .vertical
+                        )
+                        .focused($focusedField, equals: .contentField)
+                        .padding(.bottom, showDismissKeyboard ? 40 : 0)
+                    }
+                    .onTapGesture {
+                        focusedField = .contentField
+                        withAnimation(.easeInOut(duration: 1.0)) {
+                            showDismissKeyboard = true
+                        }
+                    }
+                    .monospaced()
+                    .autocorrectionDisabled()
+                    
+                    Spacer()
                 }
-                .onTapGesture {
-                    focusedField = .contentField
+                .onAppear(perform: focusTextFieldOnAppear)
+                .padding()
+                .toolbar(content: draftToolbar)
+                .onChange(of: focusedField) { _, value in
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        showDismissKeyboard = value != nil
+                    }
                 }
-                .monospaced()
-                .autocorrectionDisabled()
-                
-                Spacer()
             }
-            .onAppear(perform: focusTextFieldOnAppear)
-            .padding()
-            .toolbar(content: draftToolbar)
+            
+            if showDismissKeyboard {
+                VStack {
+                    Button(
+                        action: { focusedField = nil },
+                        label: { Image(systemName: "xmark") }
+                    )
+                    .padding()
+                }
+                .background(Color(UIColor.systemGray6))
+                .clipShape(Circle())
+                .shadow(radius: 4, x: 0, y: 4)
+                .padding([.bottom, .trailing], 12)
+                
+            }
         }
     }
 }
@@ -87,20 +115,6 @@ extension DraftView {
                 label: { Text("poem.draft.toolbar.buttons.next") }
             )
             .disabled(!viewModel.isValid)
-        }
-    }
-    
-    @ToolbarContentBuilder
-    func keyboardToolbar() -> some ToolbarContent {
-        ToolbarItem(placement: .keyboard) {
-            Button(
-                action: { focusedField = nil },
-                label: {
-                    Text("keyboard.toolbar.buttons.done")
-                        .font(.none)
-                        .fontWeight(.regular)
-                }
-            )
         }
     }
 }
