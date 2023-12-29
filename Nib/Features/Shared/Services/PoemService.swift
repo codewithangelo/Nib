@@ -93,10 +93,12 @@ final class PoemService: PoemServiceProtocol {
     private func getPoemsByAuthorQuery(authorId: String) -> Query {
         poemsCollection
             .whereField(Poem.CodingKeys.authorId.rawValue, isEqualTo: authorId)
+            .order(by: Poem.CodingKeys.createdAt.rawValue, descending: false)
     }
     
     private func getAllPoemsQuery() -> Query {
         poemsCollection
+            .order(by: Poem.CodingKeys.createdAt.rawValue, descending: false)
     }
     
     func getPoemAuthorName(authorId: String) async throws -> Username? {

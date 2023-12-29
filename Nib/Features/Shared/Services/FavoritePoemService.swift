@@ -53,6 +53,7 @@ final class FavoritePoemService: FavoritePoemServiceProtocol {
         
         let poems = try await poemsCollection
             .whereField(Poem.CodingKeys.id.rawValue, in: poemIds)
+            .order(by: Poem.CodingKeys.createdAt.rawValue, descending: false)
             .limit(to: count)
             .getDocuments(as: Poem.self)
         
